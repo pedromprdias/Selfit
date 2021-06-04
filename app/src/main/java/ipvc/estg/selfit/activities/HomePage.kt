@@ -1,12 +1,12 @@
-package ipvc.estg.selfit
+package ipvc.estg.selfit.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ipvc.estg.selfit.R
 
-class MainActivity : AppCompatActivity() {
+class HomePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
+        setContentView(R.layout.activity_home_page)
     }
 }

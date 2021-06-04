@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Selfit</string>
     <string name="nomeUser" translatable="false">Nome Utilizador</string>
+    <string name="noUsername">O nome de utilizador não pode estar vazio.</string>
+    <string name="noPassword">A palavra passe não pode estar vazia.</string>
+    <string name="preferencesFile">preferencesFile</string>
+    <string name="keepMeLogged">Manter sessão iniciada</string>
+    <string name="connectionError">Erro ao conectar ao servidor</string>
+    <string name="erro">Erro de implementação.</string>
+    <string name="credenciaisInvalidas">Credenciais inválidas</string>
 </resources>
