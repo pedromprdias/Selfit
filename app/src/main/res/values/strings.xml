@@ -8,4 +8,7 @@
     <string name="connectionError">Erro ao conectar ao servidor</string>
     <string name="erro">Erro de implementação.</string>
     <string name="credenciaisInvalidas">Credenciais inválidas</string>
+    <string name="logout">Logout</string>
+    <string name="invalidToken">Token de acesso inválido. Sessão terminada</string>
+    <string name="loggedOut">Sessão terminada</string>
 </resources>

@@ -6,3 +6,8 @@ data class LoginOutput (
     val error: String?,
     val accessToken: String?
 )
+
+data class LogoutOutput (
+    val error: String?,
+    val msg: String?
+)

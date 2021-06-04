@@ -12,6 +12,7 @@ import android.widget.Toast
 import ipvc.estg.selfit.R
 import ipvc.estg.selfit.api.Endpoints
 import ipvc.estg.selfit.api.LoginOutput
+import ipvc.estg.selfit.api.LogoutOutput
 import ipvc.estg.selfit.api.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,14 +34,44 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, HomePage::class.java)
             startActivity(intent)
             finish()
-            //else, clear shared preferences
+            //else, open the shared preferences and get the token and if messages should be displayed
         } else {
             var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+            val accessToken: String? = sharedPreferences.getString("accessToken", "")
+            val displayLogout: Boolean = sharedPreferences.getBoolean("displayLogout", false)
+            val authorization = "Bearer $accessToken"
+
+            //clear access token and message display boolean from the preferences
             with (sharedPreferences.edit()) {
                 putString("accessToken", "")
-                putBoolean("autoLogin", false)
+                putBoolean("displayLogout", false)
                 commit()
             }
+
+            val request = ServiceBuilder.buildService(Endpoints::class.java)
+            val call = request.logout(authorization)
+
+            //make logout request to the api (delete token from database) using the access token
+            call.enqueue(object : Callback<LogoutOutput> {
+                override fun onResponse(call: Call<LogoutOutput>, response: Response<LogoutOutput>) {
+                    //if the request is successful and the user just logged out display success message
+                    if(response.isSuccessful) {
+                        if(displayLogout) Toast.makeText(this@MainActivity, getString(R.string.loggedOut), Toast.LENGTH_SHORT).show()
+                    } else {
+                        //if the call is not successful, check the error code and warn the user accordingly
+                        when (response.code()){
+                            400 -> Toast.makeText(this@MainActivity, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                            401 -> if(displayLogout) Toast.makeText(this@MainActivity, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                //if there is a connection error warn the user
+                override fun onFailure(call: Call<LogoutOutput>, t: Throwable) {
+                    Toast.makeText(this@MainActivity, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                }
+            })
         }
     }
 
@@ -71,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             val request = ServiceBuilder.buildService(Endpoints::class.java)
             val call = request.login(username, hashedPassword.toString())
 
-            //make loggin request to the api using the inserted credentials
+            //make login request to the api using the inserted credentials
             call.enqueue(object : Callback<LoginOutput> {
                 override fun onResponse(call: Call<LoginOutput>, response: Response<LoginOutput>) {
                     //if the call is successful, open the shared preferences and store the access token

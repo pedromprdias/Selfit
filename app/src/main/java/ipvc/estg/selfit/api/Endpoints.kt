@@ -1,9 +1,7 @@
 package ipvc.estg.selfit.api
 
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface Endpoints {
 
@@ -14,4 +12,10 @@ interface Endpoints {
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<LoginOutput>
+
+    //logout endpoint
+    @DELETE("logout")
+    fun logout(
+        @Header("Authorization") authorization: String
+    ): Call<LogoutOutput>
 }
