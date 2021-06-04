@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Selfit</string>
+    <string name="nomeUser" translatable="false">Nome Utilizador</string>
 </resources>
