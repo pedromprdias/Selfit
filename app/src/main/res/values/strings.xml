@@ -11,4 +11,9 @@
     <string name="logout">Logout</string>
     <string name="invalidToken">Token de acesso inválido. Sessão terminada</string>
     <string name="loggedOut">Sessão terminada</string>
+    <string name="progresso">Progresso</string>
+    <string name="exercicios">Exercícios</string>
+    <string name="alimentos">Alimentos</string>
+    <string name="treinos">Treinos</string>
+    <string name="mainpage">Página Principal</string>
 </resources>

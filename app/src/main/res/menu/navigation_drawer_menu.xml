@@ -2,13 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single"
         android:id="@+id/group1">
-        <item android:id="@+id/nav_sus"
+        <item android:id="@+id/nav_main"
             android:icon="@drawable/ic_launcher_background"
-            android:title="sus">
+            android:title="@string/mainpage">
         </item>
-        <item android:id="@+id/nav_amogus"
+        <item android:id="@+id/nav_treinos"
             android:icon="@drawable/ic_launcher_background"
-            android:title="amogus">
+            android:title="@string/treinos">
+        </item>
+        <item android:id="@+id/nav_progresso"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/progresso">
+        </item>
+        <item android:id="@+id/nav_exercicios"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/exercicios">
+        </item>
+        <item android:id="@+id/nav_alimentos"
+            android:icon="@drawable/ic_launcher_background"
+            android:title="@string/alimentos">
         </item>
         <item android:id="@+id/nav_logout"
             android:icon="@drawable/ic_launcher_background"

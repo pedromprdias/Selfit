@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Selfit"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.HomePage"></activity>
+        <activity android:name=".activities.ListaAlimentos"></activity>
+        <activity android:name=".activities.ListaExercicios" />
+        <activity android:name=".activities.HomePage" />
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
