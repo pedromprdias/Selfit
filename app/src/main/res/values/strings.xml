@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Selfit</string>
+    <string name="nomeUser" translatable="false">Nome Utilizador</string>
+    <string name="noUsername">O nome de utilizador não pode estar vazio.</string>
+    <string name="noPassword">A palavra passe não pode estar vazia.</string>
+    <string name="preferencesFile">preferencesFile</string>
+    <string name="keepMeLogged">Manter sessão iniciada</string>
+    <string name="connectionError">Erro ao conectar ao servidor</string>
+    <string name="erro">Erro de implementação.</string>
+    <string name="credenciaisInvalidas">Credenciais inválidas</string>
+    <string name="logout">Logout</string>
+    <string name="invalidToken">Token de acesso inválido. Sessão terminada</string>
+    <string name="loggedOut">Sessão terminada</string>
+    <string name="progresso">Progresso</string>
+    <string name="exercicios">Exercícios</string>
+    <string name="alimentos">Alimentos</string>
+    <string name="treinos">Treinos</string>
+    <string name="mainpage">Página Principal</string>
 </resources>
