@@ -16,4 +16,9 @@
     <string name="alimentos">Alimentos</string>
     <string name="treinos">Treinos</string>
     <string name="mainpage">Página Principal</string>
+    <string name="nome">"Nome: "</string>
+    <string name="calorias">Calorias</string>
+    <string name="proteinas">Proteinas</string>
+    <string name="hidratos">Hidratos de Carbono</string>
+    <string name="lipidos">Lípidos</string>
 </resources>
