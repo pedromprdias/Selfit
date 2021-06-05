@@ -36,12 +36,43 @@ class HomePage : AppCompatActivity() {
         //when a navigation drawer item is clicked do the respective action
         navigationView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_sus -> Toast.makeText(this@HomePage, "SUS", Toast.LENGTH_SHORT).show()
-                R.id.nav_amogus -> Toast.makeText(this@HomePage, "AMOGUS", Toast.LENGTH_SHORT).show()
-                //when clicking logout, disable autologin and enable logout messages
+                //when clicking home page
+                R.id.nav_home -> {
+                    //do nothing (already there)
+                }
+                //when clicking training plans
+                R.id.nav_treinos -> {
+                    //go to training plans activity
+                    val intent = Intent(this@HomePage, ListaTreinos::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                //when clicking progress
+                R.id.nav_progresso -> {
+                    //go to progress activity
+                    val intent = Intent(this@HomePage, Progresso::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                //when clicking exercises
+                R.id.nav_exercicios -> {
+                    //go to exercises activity
+                    val intent = Intent(this@HomePage, ListaExercicios::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                //when clicking food
+                R.id.nav_alimentos -> {
+                    //go to food activity
+                    val intent = Intent(this@HomePage, ListaAlimentos::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                //when clicking logout
                 R.id.nav_logout -> {
                     val sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
 
+                    //disable autologin and enable logout messages
                     with (sharedPreferences.edit()) {
                         putBoolean("autoLogin", false)
                         putBoolean("displayLogout", true)
@@ -60,8 +91,8 @@ class HomePage : AppCompatActivity() {
 
     //change app toolbar on this activity to custom toolbar
     fun setUpToolbar() {
-        drawerLayout = findViewById(R.id.drawerLayout)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        drawerLayout = findViewById(R.id.drawerLayoutHome)
+        val toolbar: Toolbar = findViewById(R.id.toolbarHome)
         setSupportActionBar(toolbar)
         findViewById<TextView>(R.id.toolbar_title).text = " - Página Principal"
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name)

@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
 
-class ListaAlimentos : AppCompatActivity() {
+class Progresso : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -20,7 +20,7 @@ class ListaAlimentos : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_lista_alimentos)
+        setContentView(R.layout.activity_lista_exercicios)
 
         //call toolbar setup function
         setUpToolbar()
@@ -31,34 +31,34 @@ class ListaAlimentos : AppCompatActivity() {
                 //when clicking home page
                 R.id.nav_home -> {
                     //go to home page activity
-                    val intent = Intent(this@ListaAlimentos, HomePage::class.java)
+                    val intent = Intent(this@Progresso, HomePage::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking training plans
                 R.id.nav_treinos -> {
-                    //go to training plans activity
-                    val intent = Intent(this@ListaAlimentos, ListaTreinos::class.java)
-                    startActivity(intent)
-                    finish()
+                    //do nothing (already there)
                 }
                 //when clicking progress
                 R.id.nav_progresso -> {
                     //go to progress activity
-                    val intent = Intent(this@ListaAlimentos, Progresso::class.java)
+                    val intent = Intent(this@Progresso, Progresso::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking exercises
                 R.id.nav_exercicios -> {
                     //go to exercises activity
-                    val intent = Intent(this@ListaAlimentos, ListaExercicios::class.java)
+                    val intent = Intent(this@Progresso, ListaExercicios::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking food
                 R.id.nav_alimentos -> {
-                    //do nothing (already there)
+                    //go to food activity
+                    val intent = Intent(this@Progresso, ListaAlimentos::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 //when clicking logout
                 R.id.nav_logout -> {
@@ -72,7 +72,7 @@ class ListaAlimentos : AppCompatActivity() {
                     }
 
                     //go to login activity
-                    val intent = Intent(this@ListaAlimentos, MainActivity::class.java)
+                    val intent = Intent(this@Progresso, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -83,10 +83,10 @@ class ListaAlimentos : AppCompatActivity() {
 
     //change app toolbar on this activity to custom toolbar
     fun setUpToolbar() {
-        drawerLayout = findViewById(R.id.drawerLayoutListaAlimentos)
-        val toolbar: Toolbar = findViewById(R.id.toolbarListaAlimentos)
+        drawerLayout = findViewById(R.id.drawerLayoutProgresso)
+        val toolbar: Toolbar = findViewById(R.id.toolbarProgresso)
         setSupportActionBar(toolbar)
-        findViewById<TextView>(R.id.toolbar_title).text = " - Listagem de Alimentos"
+        findViewById<TextView>(R.id.toolbar_title).text = " - Progresso"
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
