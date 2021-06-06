@@ -31,4 +31,17 @@ interface Endpoints {
             @Path("id") id: Int,
             @Header("Authorization") authorization: String
     ): Call<AlimentoOutput>
+
+    //get all exercises endpoint
+    @GET("exercicios")
+    fun getAllExercicios(
+            @Header("Authorization") authorization: String
+    ): Call<AllExercicosOutput>
+
+    //get all the info of an exercise
+    @GET("exercicios/{id}")
+    fun getExercicio(
+            @Path("id") id: Int,
+            @Header("Authorization") authorization: String
+    ): Call<ExercicioOutput>
 }

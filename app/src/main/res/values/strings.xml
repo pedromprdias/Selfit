@@ -21,4 +21,6 @@
     <string name="proteinas">Proteinas</string>
     <string name="hidratos">Hidratos de Carbono</string>
     <string name="lipidos">Lípidos</string>
+    <string name="musculosTrabalhados">Músculos trabalhados: </string>
+    <string name="melhorPerformance">"Melhor performance: "</string>
 </resources>
