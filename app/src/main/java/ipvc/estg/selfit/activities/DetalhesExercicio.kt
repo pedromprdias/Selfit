@@ -128,11 +128,11 @@ class DetalhesExercicio : AppCompatActivity() {
 
                     findViewById<TextView>(R.id.exercicioDetalhesMusculosValue).text = musculos
                     findViewById<TextView>(R.id.exercicioDetalhesMaxPeso).text = "Peso máximo: " + response.body()!!.exercicio!!.maxPeso.toString() + "kg"
-                    findViewById<TextView>(R.id.exercicioDetalhesOverallValues).text = "Peso: " + response.body()!!.exercicio!!.maxOverall!!.peso.toString() + "\nRepetições: " + response.body()!!.exercicio!!.maxOverall!!.repeticoes.toString() + "\nSéries: " + response.body()!!.exercicio!!.maxOverall!!.series
+                    findViewById<TextView>(R.id.exercicioDetalhesOverallValues).text = "Peso: " + response.body()!!.exercicio!!.maxOverall!!.peso.toString() + "kg\nRepetições: " + response.body()!!.exercicio!!.maxOverall!!.repeticoes.toString() + "\nSéries: " + response.body()!!.exercicio!!.maxOverall!!.series
 
                     if(response.body()!!.exercicio!!.dataMaxPeso != ""){
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).text = "No dia: " + response.body()!!.exercicio!!.dataMaxPeso
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).text = "No dia: " + response.body()!!.exercicio!!.dataMaxOverall
+                        findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).text = "No dia:   " + response.body()!!.exercicio!!.dataMaxPeso!!.dropLast(14)
+                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).text = "No dia:    " + response.body()!!.exercicio!!.dataMaxOverall!!.dropLast(14)
                     } else {
                         findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).visibility = View.INVISIBLE
                         findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).visibility = View.INVISIBLE
