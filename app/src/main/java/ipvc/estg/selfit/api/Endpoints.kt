@@ -1,5 +1,7 @@
 package ipvc.estg.selfit.api
 
+import ipvc.estg.selfit.activities.AllExericicosOutput
+import ipvc.estg.selfit.activities.ExercicioOutput
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -18,4 +20,17 @@ interface Endpoints {
     fun logout(
         @Header("Authorization") authorization: String
     ): Call<LogoutOutput>
+
+    //get all exercises endpoint
+    @GET("exercicios")
+    fun getAllExercicios(
+            @Header("Authorization") authorization: String
+    ): Call<AllExericicosOutput>
+
+    //get all the info of an exercise
+    @GET("exercicios/{id}")
+    fun getExercicio(
+            @Path("id") id: Int,
+            @Header("Authorization") authorization: String
+    ): Call<ExercicioOutput>
 }

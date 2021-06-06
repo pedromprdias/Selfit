@@ -3,14 +3,24 @@ package ipvc.estg.selfit.activities
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
+import ipvc.estg.selfit.api.Endpoints
+import ipvc.estg.selfit.api.ServiceBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DetalhesExercicio : AppCompatActivity() {
 
@@ -82,6 +92,67 @@ class DetalhesExercicio : AppCompatActivity() {
             }
             false
         }
+
+        //open shared preferences and get the access token to make a request
+        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+
+        val authorization = "Bearer $accessToken"
+        //get the clicked exercise id passed from the exercise list activity
+        val id = intent.getIntExtra("ID", 0)
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
+        val call = request.getExercicio(id, authorization)
+
+        //make request to get all the information about this page's exercise
+        call.enqueue(object : Callback<ExercicioOutput> {
+            override fun onResponse(call: Call<ExercicioOutput>, response: Response<ExercicioOutput>) {
+                //if the request is successful display all the exercise's information on the page's elements
+                if(response.isSuccessful) {
+                    findViewById<TextView>(R.id.exercicioDetalhesName).text = response.body()!!.exercicio!!.nome
+                    findViewById<TextView>(R.id.exercicioDetalhesDescription).text = response.body()!!.exercicio!!.descricao
+
+                    val bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.exercicio!!.imagem.data, 0, response.body()!!.exercicio!!.imagem.data.size)
+
+                    findViewById<ImageView>(R.id.exercicioDetalhesImage).setImageBitmap(bitmap)
+
+                    var musculos: String = ""
+
+                    response.body()!!.exercicio!!.musculos.forEach{
+                        musculos += it.nome + ","
+                    }
+
+                    musculos.dropLast(1)
+
+                    findViewById<TextView>(R.id.exercicioDetalhesMusculosValue).text = musculos
+                    findViewById<TextView>(R.id.exercicioDetalhesMaxPeso).text = "Peso máximo: " + response.body()!!.exercicio!!.maxPeso.toString() + "kg"
+                    findViewById<TextView>(R.id.exercicioDetalhesOverallValues).text = "Peso: " + response.body()!!.exercicio!!.maxOverall!!.peso.toString() + "\nRepetições: " + response.body()!!.exercicio!!.maxOverall!!.repeticoes.toString() + "\nSéries: " + response.body()!!.exercicio!!.maxOverall!!.series
+
+                    if(response.body()!!.exercicio!!.dataMaxPeso != ""){
+                        findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).text = "No dia: " + response.body()!!.exercicio!!.dataMaxPeso
+                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).text = "No dia: " + response.body()!!.exercicio!!.dataMaxOverall
+                    } else {
+                        findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).visibility = View.INVISIBLE
+                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).visibility = View.INVISIBLE
+                    }
+                } else {
+                    //if the call is not successful, check the error code, warn the user accordingly and close this activity
+                    when (response.code()){
+                        400 -> Toast.makeText(this@DetalhesExercicio, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@DetalhesExercicio, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@DetalhesExercicio, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                    }
+                    finish()
+                }
+            }
+
+            //if there is a connection error warn the user and close this activity
+            override fun onFailure(call: Call<ExercicioOutput>, t: Throwable) {
+                Toast.makeText(this@DetalhesExercicio, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        })
     }
 
     //change app toolbar on this activity to custom toolbar

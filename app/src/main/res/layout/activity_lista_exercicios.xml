@@ -37,43 +37,47 @@
                     android:textColor="#000000"
                     android:textSize="20sp" />
             </androidx.appcompat.widget.Toolbar>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="120dp"
+                android:background="#4CAF50">
 
                 <ImageButton
+                    android:id="@+id/listaExerciciosSearchBtn"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginEnd="344dp"
-                    android:layout_marginRight="344dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
                     android:layout_marginBottom="32dp"
+                    android:onClick="filterExercicios"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/ic_search_foreground"
                     tools:ignore="VectorDrawableCompat" />
 
                 <EditText
-                    android:id="@+id/editTextTextPersonName"
+                    android:id="@+id/listaExerciciosNomeSearch"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="68dp"
-                    android:layout_marginRight="68dp"
-                    android:layout_marginBottom="64dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginBottom="8dp"
+                    android:autoText="false"
+                    android:background="#FFFFFF"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Name"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintBottom_toTopOf="@+id/listaExerciciosMusculosSearch"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/listaExerciciosMusculosSearch"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
-                    android:layout_marginEnd="68dp"
-                    android:layout_marginRight="68dp"
                     android:layout_marginBottom="16dp"
+                    android:background="#FFFFFF"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintStart_toStartOf="@+id/listaExerciciosNomeSearch" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -84,8 +88,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:listitem="@layout/exercicios_line"/>
+                app:layout_constraintStart_toStartOf="parent"/>
 
         </LinearLayout>
     </ScrollView>
