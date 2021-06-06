@@ -170,7 +170,7 @@ class ListaAlimentos : AppCompatActivity() {
         //get id of clicked item
         val id: Int = (view as  ViewGroup).findViewById<TextView>(R.id.alimentosRecyclerId).text.toString().toInt()
 
-        //move to food item details page and send clicked the food item id
+        //move to food item details page and send the clicked food item id
         val intent = Intent(this, DetalhesAlimento::class.java).apply {
             putExtra("ID", id)
         }

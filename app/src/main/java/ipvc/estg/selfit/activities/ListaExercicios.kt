@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -18,7 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
+import ipvc.estg.selfit.adapters.ExercicioAdapter
+import ipvc.estg.selfit.api.AllExerciciosOutput
 import ipvc.estg.selfit.api.Endpoints
+import ipvc.estg.selfit.api.Exercicio
 import ipvc.estg.selfit.api.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback
@@ -111,8 +113,8 @@ class ListaExercicios : AppCompatActivity() {
         val call = request.getAllExercicios(authorization)
 
         //make request to get information about all exercises using the access token
-        call.enqueue(object : Callback<AllExericicosOutput> {
-            override fun onResponse(call: Call<AllExericicosOutput>, response: Response<AllExericicosOutput>) {
+        call.enqueue(object : Callback<AllExerciciosOutput> {
+            override fun onResponse(call: Call<AllExerciciosOutput>, response: Response<AllExerciciosOutput>) {
                 //if the request is successful store all exercises info and display it on the recycler
                 if(response.isSuccessful) {
                     listaExercicios = response.body()!!.listaExercicios!!
@@ -129,7 +131,7 @@ class ListaExercicios : AppCompatActivity() {
             }
 
             //if there is a connection error warn the user
-            override fun onFailure(call: Call<AllExericicosOutput>, t: Throwable) {
+            override fun onFailure(call: Call<AllExerciciosOutput>, t: Throwable) {
                 listaExercicios = listOf()
                 Toast.makeText(this@ListaExercicios, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
             }

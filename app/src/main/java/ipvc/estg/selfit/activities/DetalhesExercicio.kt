@@ -17,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
 import ipvc.estg.selfit.api.Endpoints
+import ipvc.estg.selfit.api.ExercicioOutput
 import ipvc.estg.selfit.api.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback

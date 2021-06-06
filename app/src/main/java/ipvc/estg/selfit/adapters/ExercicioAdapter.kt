@@ -1,4 +1,4 @@
-package ipvc.estg.selfit.activities
+package ipvc.estg.selfit.adapters
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ipvc.estg.selfit.R
+import ipvc.estg.selfit.api.Exercicio
 
 class ExercicioAdapter constructor(context: Context) : RecyclerView.Adapter<ExercicioAdapter.ExercicioViewHolder>() {
 

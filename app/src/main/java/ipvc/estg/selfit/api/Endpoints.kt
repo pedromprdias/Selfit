@@ -36,7 +36,7 @@ interface Endpoints {
     @GET("exercicios")
     fun getAllExercicios(
             @Header("Authorization") authorization: String
-    ): Call<AllExercicosOutput>
+    ): Call<AllExerciciosOutput>
 
     //get all the info of an exercise
     @GET("exercicios/{id}")

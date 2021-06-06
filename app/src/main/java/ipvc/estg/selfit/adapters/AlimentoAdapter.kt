@@ -39,8 +39,8 @@ class AlimentoAdapter constructor(context: Context) : RecyclerView.Adapter<Alime
     }
 
     //change data set of the adapter
-    fun setAlimentos(notes: List<Alimento>) {
-        this.alimentos = notes
+    fun setAlimentos(alimentos: List<Alimento>) {
+        this.alimentos = alimentos
         notifyDataSetChanged()
     }
 
