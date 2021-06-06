@@ -5,9 +5,11 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -133,6 +135,7 @@ class ListaExercicios : AppCompatActivity() {
             //if there is a connection error warn the user
             override fun onFailure(call: Call<AllExerciciosOutput>, t: Throwable) {
                 listaExercicios = listOf()
+                Log.i("aa", t.message.toString())
                 Toast.makeText(this@ListaExercicios, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
             }
         })
@@ -143,8 +146,7 @@ class ListaExercicios : AppCompatActivity() {
 
         //takes the user search inputs
         val search = findViewById<EditText>(R.id.listaExerciciosNomeSearch).text.toString()
-        //val muscle = findViewById<Spinner>(R.id.listaExerciciosMusculosSearch).selectedItem.toString()
-        val muscle = "Todos"
+        val muscle = findViewById<Spinner>(R.id.listaExerciciosMusculosSearch).selectedItem.toString()
 
         val exerciciosRecycler = findViewById<RecyclerView>(R.id.exerciciosListRecycler)
         val adapter = ExercicioAdapter(this)

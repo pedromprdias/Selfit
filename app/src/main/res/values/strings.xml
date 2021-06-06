@@ -1,4 +1,21 @@
 <resources>
+    <string-array name="musculos">
+        <item name="Todos">Todos</item>
+        <item name="Peito">Peito</item>
+        <item name="Deltoide Anterior">Deltoide Anterior</item>
+        <item name="Deltoide Medial">Deltoide Medial</item>
+        <item name="Deltoide Posterior">Deltoide Posterior</item>
+        <item name="Trapézio">Trapézio</item>
+        <item name="Dorsal">Dorsal</item>
+        <item name="Lombar">Lombar</item>
+        <item name="Triceps">Triceps</item>
+        <item name="Biceps">Biceps</item>
+        <item name="Glúteos">Glúteos</item>
+        <item name="Quadriceps">Quadriceps</item>
+        <item name="Posterior da Coxa">Posterior da Coxa</item>
+        <item name="Gémeos">Gémeos</item>
+        <item name="Abdominais">Abdominais</item>
+    </string-array>
     <string name="app_name">Selfit</string>
     <string name="nomeUser" translatable="false">Nome Utilizador</string>
     <string name="noUsername">O nome de utilizador não pode estar vazio.</string>
@@ -23,4 +40,5 @@
     <string name="lipidos">Lípidos</string>
     <string name="musculosTrabalhados">Músculos trabalhados: </string>
     <string name="melhorPerformance">"Melhor performance: "</string>
+    <string name="maquina">Máquina:</string>
 </resources>

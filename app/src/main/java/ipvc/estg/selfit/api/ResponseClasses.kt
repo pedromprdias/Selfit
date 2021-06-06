@@ -22,6 +22,11 @@ data class AlimentoOutput (
         val alimento: Alimento?
 )
 
+data class MaquinaOutput (
+        val error: String?,
+        val maquina: Maquina?
+)
+
 data class Alimento (
         val id: Int,
         val nome: String,
@@ -65,11 +70,14 @@ data class Peso (
 
 data class Maquina (
         val id: Int,
-        val nome: String
+        val nome: String,
+        val imagem: Imagem,
+        val exercicios: List<Exercicio>?,
+        val descricao: String?
 )
 
 data class Musculo (
-        val id: Int,
+        val imagem: Imagem,
         val nome: String
 )
 

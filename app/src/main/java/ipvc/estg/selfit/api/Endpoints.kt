@@ -44,4 +44,11 @@ interface Endpoints {
             @Path("id") id: Int,
             @Header("Authorization") authorization: String
     ): Call<ExercicioOutput>
+
+    //get all the info of a machine
+    @GET("maquinas/{id}")
+    fun getMaquina(
+        @Path("id") id: Int,
+        @Header("Authorization") authorization: String
+    ): Call<MaquinaOutput>
 }

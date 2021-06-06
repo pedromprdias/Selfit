@@ -5,47 +5,46 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
+import ipvc.estg.selfit.adapters.ExerciciosMaquinaAdapter
 import ipvc.estg.selfit.adapters.MusculoAdapter
-import ipvc.estg.selfit.api.Endpoints
-import ipvc.estg.selfit.api.ExercicioOutput
-import ipvc.estg.selfit.api.Musculo
-import ipvc.estg.selfit.api.ServiceBuilder
+import ipvc.estg.selfit.api.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetalhesExercicio : AppCompatActivity() {
+class DetalhesMaquina : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var navigationView: NavigationView
-    private lateinit var listaMusculos: List<Musculo>
+    private lateinit var listaExercicios: List<Exercicio>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detalhes_exercicio)
+        setContentView(R.layout.activity_detalhes_maquina)
 
         //set the recycler's adapter
-        val musculosRecycler = findViewById<RecyclerView>(R.id.maquinaDetalhesExerciciosRecycler)
-        val adapter = MusculoAdapter(this)
-        musculosRecycler.adapter = adapter
+        val exerciciosRecycler = findViewById<RecyclerView>(R.id.maquinaDetalhesExerciciosRecycler)
+        val adapter = ExerciciosMaquinaAdapter(this)
+        exerciciosRecycler.adapter = adapter
         val linearLayoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        musculosRecycler.layoutManager = linearLayoutManager
-        adapter.setMusculos(listOf())
+        exerciciosRecycler.layoutManager = linearLayoutManager
+        adapter.setExercicios(listOf())
 
         //call toolbar setup function
         setUpToolbar()
@@ -56,35 +55,35 @@ class DetalhesExercicio : AppCompatActivity() {
                 //when clicking home page
                 R.id.nav_home -> {
                     //go to home page activity
-                    val intent = Intent(this@DetalhesExercicio, HomePage::class.java)
+                    val intent = Intent(this@DetalhesMaquina, HomePage::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking training plans
                 R.id.nav_treinos -> {
                     //go to training plans activity
-                    val intent = Intent(this@DetalhesExercicio, ListaTreinos::class.java)
+                    val intent = Intent(this@DetalhesMaquina, ListaTreinos::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking progress
                 R.id.nav_progresso -> {
                     //go to progress activity
-                    val intent = Intent(this@DetalhesExercicio, Progresso::class.java)
+                    val intent = Intent(this@DetalhesMaquina, Progresso::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking exercises
                 R.id.nav_exercicios -> {
                     //go to exercises activity
-                    val intent = Intent(this@DetalhesExercicio, ListaExercicios::class.java)
+                    val intent = Intent(this@DetalhesMaquina, ListaExercicios::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking food
                 R.id.nav_alimentos -> {
                     //go to food activity
-                    val intent = Intent(this@DetalhesExercicio, ListaAlimentos::class.java)
+                    val intent = Intent(this@DetalhesMaquina, ListaAlimentos::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -100,7 +99,7 @@ class DetalhesExercicio : AppCompatActivity() {
                     }
 
                     //go to login activity
-                    val intent = Intent(this@DetalhesExercicio, MainActivity::class.java)
+                    val intent = Intent(this@DetalhesMaquina, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -118,66 +117,49 @@ class DetalhesExercicio : AppCompatActivity() {
         val id = intent.getIntExtra("ID", 0)
 
         val request = ServiceBuilder.buildService(Endpoints::class.java)
-        val call = request.getExercicio(id, authorization)
+        val call = request.getMaquina(id, authorization)
 
         //make request to get all the information about this page's exercise
-        call.enqueue(object : Callback<ExercicioOutput> {
-            override fun onResponse(call: Call<ExercicioOutput>, response: Response<ExercicioOutput>) {
+        call.enqueue(object : Callback<MaquinaOutput> {
+            override fun onResponse(call: Call<MaquinaOutput>, response: Response<MaquinaOutput>) {
                 //if the request is successful display all the exercise's information on the page's elements
                 if(response.isSuccessful) {
-                    findViewById<TextView>(R.id.exercicioDetalhesName).text = response.body()!!.exercicio!!.nome
-                    findViewById<TextView>(R.id.exercicioDetalhesDescription).text = response.body()!!.exercicio!!.descricao
+                    findViewById<TextView>(R.id.maquinaDetalhesName).text = response.body()!!.maquina!!.nome
+                    findViewById<TextView>(R.id.maquinaDetalhesDescription).text = response.body()!!.maquina!!.descricao
 
-                    var bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.exercicio!!.imagem.data, 0, response.body()!!.exercicio!!.imagem.data.size)
+                    var bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.maquina!!.imagem.data, 0, response.body()!!.maquina!!.imagem.data.size)
 
-                    findViewById<ImageView>(R.id.exercicioDetalhesImage).setImageBitmap(bitmap)
+                    findViewById<ImageView>(R.id.maquinaDetalhesImage).setImageBitmap(bitmap)
 
-                    findViewById<TextView>(R.id.exercicioDetalhesMaxPeso).text = "Peso máximo: " + response.body()!!.exercicio!!.maxPeso.toString() + "kg"
-                    findViewById<TextView>(R.id.exercicioDetalhesOverallValues).text = "Peso: " + response.body()!!.exercicio!!.maxOverall!!.peso.toString() + "kg\nRepetições: " + response.body()!!.exercicio!!.maxOverall!!.repeticoes.toString() + "\nSéries: " + response.body()!!.exercicio!!.maxOverall!!.series
-                    findViewById<TextView>(R.id.exercicioDetalhesMaquinaName).text = response.body()!!.exercicio!!.maquina!!.nome
-                    findViewById<TextView>(R.id.exercicioDetalhesMaquinaId).text = response.body()!!.exercicio!!.maquina!!.id.toString()
-
-                    bitmap = BitmapFactory.decodeByteArray(response.body()!!.exercicio!!.maquina!!.imagem.data, 0, response.body()!!.exercicio!!.maquina!!.imagem.data.size)
-
-                    findViewById<ImageView>(R.id.exercicioDetalhesMaquinaImage).setImageBitmap(bitmap)
-
-                    if(response.body()!!.exercicio!!.dataMaxPeso != ""){
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).text = "No dia:   " + response.body()!!.exercicio!!.dataMaxPeso!!.dropLast(14)
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).text = "No dia:    " + response.body()!!.exercicio!!.dataMaxOverall!!.dropLast(14)
-                    } else {
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).visibility = View.INVISIBLE
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).visibility = View.INVISIBLE
-                    }
-
-                    listaMusculos = response.body()!!.exercicio!!.musculos
-                    adapter.setMusculos(listaMusculos)
+                    listaExercicios = response.body()!!.maquina!!.exercicios!!
+                    adapter.setExercicios(listaExercicios)
                 } else {
                     //if the call is not successful, check the error code, warn the user accordingly and close this activity
                     when (response.code()){
-                        400 -> Toast.makeText(this@DetalhesExercicio, getString(R.string.erro), Toast.LENGTH_SHORT).show()
-                        401 -> Toast.makeText(this@DetalhesExercicio, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
-                        403 -> Toast.makeText(this@DetalhesExercicio, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        400 -> Toast.makeText(this@DetalhesMaquina, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@DetalhesMaquina, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@DetalhesMaquina, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
                     }
                     finish()
                 }
             }
 
             //if there is a connection error warn the user and close this activity
-            override fun onFailure(call: Call<ExercicioOutput>, t: Throwable) {
-                Toast.makeText(this@DetalhesExercicio, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+            override fun onFailure(call: Call<MaquinaOutput>, t: Throwable) {
+                Toast.makeText(this@DetalhesMaquina, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
                 finish()
             }
         })
     }
 
     //called when the machine is clicked
-    fun moveToMaquina(view: View) {
+    fun moveToExercicio(view: View) {
 
         //get id of the machine
-        val id: Int = (view as ViewGroup).findViewById<TextView>(R.id.exercicioDetalhesMaquinaId).text.toString().toInt()
+        val id: Int = (view as ViewGroup).findViewById<TextView>(R.id.exerciciosMaquinaRecyclerId).text.toString().toInt()
 
         //move to machine details page and send the it id
-        val intent = Intent(this, DetalhesMaquina::class.java).apply {
+        val intent = Intent(this, DetalhesExercicio::class.java).apply {
             putExtra("ID", id)
         }
         startActivity(intent)
@@ -186,10 +168,10 @@ class DetalhesExercicio : AppCompatActivity() {
 
     //change app toolbar on this activity to custom toolbar
     fun setUpToolbar() {
-        drawerLayout = findViewById(R.id.drawerLayoutDetalhesExercicio)
-        val toolbar: Toolbar = findViewById(R.id.toolbarDetalhesExercicio)
+        drawerLayout = findViewById(R.id.drawerLayoutDetalhesMaquina)
+        val toolbar: Toolbar = findViewById(R.id.toolbarDetalhesMaquina)
         setSupportActionBar(toolbar)
-        findViewById<TextView>(R.id.toolbar_title).text = " - Detalhes de Exercício"
+        findViewById<TextView>(R.id.toolbar_title).text = " - Detalhes de Máquina"
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
