@@ -128,7 +128,7 @@ class DetalhesExercicio : AppCompatActivity() {
                     findViewById<TextView>(R.id.exercicioDetalhesName).text = response.body()!!.exercicio!!.nome
                     findViewById<TextView>(R.id.exercicioDetalhesDescription).text = response.body()!!.exercicio!!.descricao
 
-                    var bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.exercicio!!.imagem.data, 0, response.body()!!.exercicio!!.imagem.data.size)
+                    var bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.exercicio!!.imagem!!.data, 0, response.body()!!.exercicio!!.imagem!!.data.size)
 
                     findViewById<ImageView>(R.id.exercicioDetalhesImage).setImageBitmap(bitmap)
 
@@ -149,7 +149,7 @@ class DetalhesExercicio : AppCompatActivity() {
                         findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).visibility = View.INVISIBLE
                     }
 
-                    listaMusculos = response.body()!!.exercicio!!.musculos
+                    listaMusculos = response.body()!!.exercicio!!.musculos!!
                     adapter.setMusculos(listaMusculos)
                 } else {
                     //if the call is not successful, check the error code, warn the user accordingly and close this activity

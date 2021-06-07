@@ -41,7 +41,7 @@ class ListaExercicios : AppCompatActivity() {
 
         //set the recycler's adapter
         val exerciciosRecycler = findViewById<RecyclerView>(R.id.exerciciosListRecycler)
-        val adapter = ExercicioAdapter(this)
+        val adapter = ExercicioAdapter(this, null)
         exerciciosRecycler.adapter = adapter
         exerciciosRecycler.layoutManager = LinearLayoutManager(this)
         adapter.setExercicios(listOf())
@@ -149,7 +149,7 @@ class ListaExercicios : AppCompatActivity() {
         val muscle = findViewById<Spinner>(R.id.listaExerciciosMusculosSearch).selectedItem.toString()
 
         val exerciciosRecycler = findViewById<RecyclerView>(R.id.exerciciosListRecycler)
-        val adapter = ExercicioAdapter(this)
+        val adapter = ExercicioAdapter(this, null)
         exerciciosRecycler.adapter = adapter
         exerciciosRecycler.layoutManager = LinearLayoutManager(this)
 
@@ -158,12 +158,12 @@ class ListaExercicios : AppCompatActivity() {
             var novaLista: MutableList<Exercicio> = mutableListOf()
 
             listaExercicios.forEach{
-                if(it.nome.contains(search, true)) {
+                if(it.nome!!.contains(search, true)) {
                     if(muscle == "Todos"){
                         novaLista.add(it)
                     } else {
                         var existe: Boolean = false
-                        it.musculos.forEach{
+                        it.musculos!!.forEach{
                             if(it.nome == muscle) existe = true
                         }
 
@@ -181,7 +181,7 @@ class ListaExercicios : AppCompatActivity() {
 
                 listaExercicios.forEach{
                     var existe: Boolean = false
-                    it.musculos.forEach{
+                    it.musculos!!.forEach{
                         if(it.nome == muscle) existe = true
                     }
 

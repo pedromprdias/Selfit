@@ -1,0 +1,54 @@
+package ipvc.estg.selfit.adapters
+
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import ipvc.estg.selfit.R
+import ipvc.estg.selfit.api.Alimento
+
+class RefeicaoAdapter constructor(context: Context) : RecyclerView.Adapter<RefeicaoAdapter.RefeicaoViewHolder>() {
+
+    private val inflater: LayoutInflater = LayoutInflater.from(context)
+    private var alimentos = listOf<Alimento>()
+
+    class RefeicaoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val alimentoNome: TextView = itemView.findViewById(R.id.refeicaoRecyclerName)
+        val alimentoImage: ImageView = itemView.findViewById(R.id.refeicaoRecyclerImage)
+        val alimentoId: TextView = itemView.findViewById(R.id.refeicaoRecyclerId)
+        val alimentoQtd: TextView = itemView.findViewById(R.id.refeicaoRecyclerQuantity)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RefeicaoViewHolder {
+        val itemView = inflater.inflate(R.layout.refeicao_recycler_line, parent, false)
+        return RefeicaoViewHolder(itemView)
+    }
+
+    override fun onBindViewHolder(holder: RefeicaoViewHolder, position: Int) {
+        val current = alimentos[position]
+
+        val bitmap: Bitmap = BitmapFactory.decodeByteArray(current.imagem!!.data, 0, current.imagem!!.data.size)
+
+        holder.alimentoNome.text = current.nome
+        holder.alimentoId.text = current.id.toString()
+        holder.alimentoImage.setImageBitmap(bitmap)
+
+        holder.alimentoQtd.text = current.quantidade.toString() + current.tipo!!.last()
+    }
+
+    //change data set of the adapter
+    fun setAlimentos(alimentos: List<Alimento>) {
+        this.alimentos = alimentos
+        notifyDataSetChanged()
+    }
+
+    //get data set size
+    override fun getItemCount(): Int {
+        return alimentos.size
+    }
+}

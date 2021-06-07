@@ -27,18 +27,6 @@ data class MaquinaOutput (
         val maquina: Maquina?
 )
 
-data class Alimento (
-        val id: Int,
-        val nome: String,
-        val descricao: String?,
-        val tipo: String?,
-        val calorias: Float?,
-        val lipidos: Float?,
-        val proteinas: Float?,
-        val hidratosCarbono: Float?,
-        val imagem: Imagem
-)
-
 data class AllExerciciosOutput (
         val error: String?,
         val listaExercicios: List<Exercicio>?
@@ -49,17 +37,58 @@ data class ExercicioOutput (
         val exercicio: Exercicio?
 )
 
+/*********************************************************/
+
+data class RefeicaoInput(
+        val data: String,
+        val tipo: String,
+        val alimentos: MutableList<AlimentoInput>
+)
+
+data class AlimentoInput(
+        val id: Int,
+        val quantidade: Int
+)
+
+data class TreinoDiarioInput(
+        val data: String,
+        val exercicios: MutableList<ExercicioInput>
+)
+
+data class ExercicioInput(
+        val id: Int,
+        val series: Int,
+        val repeticoes: Int,
+        val peso: Float
+)
+
+/*********************************************************/
+
+data class Alimento (
+        val id: Int,
+        val nome: String? = null,
+        val descricao: String? = null,
+        val tipo: String? = null,
+        val calorias: Float? = null,
+        val lipidos: Float? = null,
+        val proteinas: Float? = null,
+        val hidratosCarbono: Float? = null,
+        val imagem: Imagem? = null,
+        val quantidade: Int? = null
+)
+
 data class Exercicio (
         val id: Int,
-        val nome: String,
-        val musculos: List<Musculo>,
-        val descricao: String?,
-        val maquina: Maquina?,
-        val maxPeso: Float?,
-        val dataMaxPeso: String?,
-        val maxOverall: Peso?,
-        val dataMaxOverall: String?,
-        val imagem: Imagem
+        val nome: String? = null,
+        val musculos: List<Musculo>?  = null,
+        val descricao: String? = null,
+        val maquina: Maquina? = null,
+        val maxPeso: Float? = null,
+        val dataMaxPeso: String? = null,
+        val maxOverall: Peso? = null,
+        val dataMaxOverall: String? = null,
+        val imagem: Imagem? = null,
+        var valores: Peso? = null
 )
 
 data class Peso (

@@ -2,17 +2,13 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayoutHome"
     android:fitsSystemWindows="true"
     android:background="#F7FFFFFF"
     android:minWidth="19dp">
-
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:background="#F7FFFFFF"
-        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:background="#0000FF"
                 app:subtitleTextColor="#0A0A0A"
-                app:titleTextColor="#111111" >
+                app:titleTextColor="#111111">
 
                 <TextView
                     android:id="@+id/toolbar_title"
@@ -36,9 +32,263 @@
                     android:textColor="#000000"
                     android:textSize="20sp" />
             </androidx.appcompat.widget.Toolbar>
-        </LinearLayout>
-    </ScrollView>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#03A9F4">
+
+                <TextView
+                    android:id="@+id/homeData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/refeicoes" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pequenoAlmoco"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/homePequenoAlmocoRecyclerList"
+                            android:layout_width="340dp"
+                            android:layout_height="200dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <Button
+                            android:id="@+id/homePequenoAlmocoGuardarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="guardarRefeicao"
+                            android:text="@string/guardar"
+                            app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoAdicionarBtn"
+                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
+
+                        <Button
+                            android:id="@+id/homePequenoAlmocoAdicionarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="adicionarAlimento"
+                            android:text="@string/adicionar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/almoco"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/homeAlmocoRecyclerList"
+                            android:layout_width="340dp"
+                            android:layout_height="200dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <Button
+                            android:id="@+id/homeAlmocoAdicionarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="adicionarAlimento"
+                            android:text="@string/adicionar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
+
+                        <Button
+                            android:id="@+id/homeAlmocoGuardarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="guardarRefeicao"
+                            android:text="@string/guardar"
+                            app:layout_constraintStart_toEndOf="@+id/homeAlmocoAdicionarBtn"
+                            app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lanche"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/homeLancheRecyclerList"
+                            android:layout_width="340dp"
+                            android:layout_height="200dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <Button
+                            android:id="@+id/homeLancheAdicionarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="adicionarAlimento"
+                            android:text="@string/adicionar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
+
+                        <Button
+                            android:id="@+id/homeLancheGuardarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="guardarRefeicao"
+                            android:text="@string/guardar"
+                            app:layout_constraintStart_toEndOf="@+id/homeLancheAdicionarBtn"
+                            app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/jantar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/homeJantarRecyclerList"
+                            android:layout_width="340dp"
+                            android:layout_height="200dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+                        <Button
+                            android:id="@+id/homeJantarAdicionarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="adicionarAlimento"
+                            android:text="@string/adicionar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
+
+                        <Button
+                            android:id="@+id/homeJantarGuardarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="guardarRefeicao"
+                            android:text="@string/guardar"
+                            app:layout_constraintStart_toEndOf="@+id/homeJantarAdicionarBtn"
+                            app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/treinoDiario" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/homeTreinoRecyclerList"
+                            android:layout_width="340dp"
+                            android:layout_height="200dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <Button
+                            android:id="@+id/homeTreinoAdicionarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="adicionarExercicio"
+                            android:text="@string/adicionar"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+
+                        <Button
+                            android:id="@+id/homeTreinoGuardarBtn"
+                            android:layout_width="120dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="guardarTreino"
+                            android:text="@string/guardar"
+                            app:layout_constraintStart_toEndOf="@+id/homeTreinoAdicionarBtn"
+                            app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+
+                        <Button
+                            android:id="@+id/homeTreinoCarregarBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/carregarTreino"
+                            app:layout_constraintStart_toEndOf="@+id/homeTreinoGuardarBtn"
+                            app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"
         android:layout_width="match_parent"

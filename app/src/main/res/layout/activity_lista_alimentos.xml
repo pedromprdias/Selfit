@@ -66,6 +66,8 @@
                     app:layout_constraintStart_toEndOf="@+id/listaAlimentosNomeSearch"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@android:drawable/ic_menu_search" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView

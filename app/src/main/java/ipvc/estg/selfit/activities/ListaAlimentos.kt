@@ -37,7 +37,7 @@ class ListaAlimentos : AppCompatActivity() {
 
         //set the recycler's adapter
         val alimentosRecycler = findViewById<RecyclerView>(R.id.alimentosListRecycler)
-        val adapter = AlimentoAdapter(this)
+        val adapter = AlimentoAdapter(this, null)
         alimentosRecycler.adapter = adapter
         alimentosRecycler.layoutManager = LinearLayoutManager(this)
         adapter.setAlimentos(listOf())
@@ -143,7 +143,7 @@ class ListaAlimentos : AppCompatActivity() {
         val search = findViewById<EditText>(R.id.listaAlimentosNomeSearch).text.toString()
 
         val alimentosRecycler = findViewById<RecyclerView>(R.id.alimentosListRecycler)
-        val adapter = AlimentoAdapter(this)
+        val adapter = AlimentoAdapter(this, null)
         alimentosRecycler.adapter = adapter
         alimentosRecycler.layoutManager = LinearLayoutManager(this)
 
@@ -152,7 +152,7 @@ class ListaAlimentos : AppCompatActivity() {
             var novaLista: MutableList<Alimento> = mutableListOf()
 
             listaAlimentos.forEach{
-                if(it.nome.contains(search, true)) {
+                if(it.nome!!.contains(search, true)) {
                     novaLista.add(it)
                 }
             }

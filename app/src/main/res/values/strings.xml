@@ -41,4 +41,22 @@
     <string name="musculosTrabalhados">Músculos trabalhados: </string>
     <string name="melhorPerformance">"Melhor performance: "</string>
     <string name="maquina">Máquina:</string>
+    <string name="refeicoes">Refeições</string>
+    <string name="treinoDiario">Treino Diário</string>
+    <string name="pequenoAlmoco">Pequeno Almoço</string>
+    <string name="almoco">Almoço</string>
+    <string name="lanche">Lanche</string>
+    <string name="jantar">Jantar</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="guardar">Guardar</string>
+    <string name="carregarTreino">Carregar Treino</string>
+    <string name="peso">Peso: </string>
+    <string name="repeticoes">Repetições: </string>
+    <string name="series">Séries: </string>
+    <string name="noPeso">O peso não pode estar vazio</string>
+    <string name="noRepeticoes">As repetições não podem estar vazias</string>
+    <string name="noSeries">As séries não podem estar vazias</string>
+    <string name="alterar">Alterar</string>
+    <string name="remover">Remover</string>
+    <string name="exercicioJaNoTreino">Este exercício já se encontra no treino</string>
 </resources>

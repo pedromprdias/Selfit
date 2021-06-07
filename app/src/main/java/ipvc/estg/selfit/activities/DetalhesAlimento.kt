@@ -109,7 +109,7 @@ class DetalhesAlimento : AppCompatActivity() {
                     findViewById<TextView>(R.id.alimentoDetalhesName).text = response.body()!!.alimento!!.nome
                     findViewById<TextView>(R.id.alimentoDetalhesDescription).text = response.body()!!.alimento!!.descricao
 
-                    val bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.alimento!!.imagem.data, 0, response.body()!!.alimento!!.imagem.data.size)
+                    val bitmap: Bitmap = BitmapFactory.decodeByteArray(response.body()!!.alimento!!.imagem!!.data, 0, response.body()!!.alimento!!.imagem!!.data.size)
 
                     findViewById<ImageView>(R.id.alimentoDetalhesImage).setImageBitmap(bitmap)
 

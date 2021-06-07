@@ -31,7 +31,7 @@ class ExerciciosMaquinaAdapter constructor(context: Context) : RecyclerView.Adap
     override fun onBindViewHolder(holder: ExerciciosMaquinaViewHolder, position: Int) {
         val current = exercicios[position]
 
-        val bitmap: Bitmap = BitmapFactory.decodeByteArray(current.imagem.data, 0, current.imagem.data.size)
+        val bitmap: Bitmap = BitmapFactory.decodeByteArray(current.imagem!!.data, 0, current.imagem!!.data.size)
 
         holder.exercicioNome.text = current.nome
         holder.exercicioImagem.setImageBitmap(bitmap)
