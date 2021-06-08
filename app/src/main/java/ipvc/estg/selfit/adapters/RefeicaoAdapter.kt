@@ -38,7 +38,14 @@ class RefeicaoAdapter constructor(context: Context) : RecyclerView.Adapter<Refei
         holder.alimentoId.text = current.id.toString()
         holder.alimentoImage.setImageBitmap(bitmap)
 
-        holder.alimentoQtd.text = current.quantidade.toString() + current.tipo!!.last()
+        holder.alimentoQtd.text = current.quantidade.toString()
+
+        holder.alimentoQtd.text = when(current.tipo!!.last()){
+            'e' ->  current.quantidade.toString() + " unis"
+            'l' ->  current.quantidade.toString() + " ml"
+            'g' ->  current.quantidade.toString() + " g"
+            else ->  current.quantidade.toString() + ""
+        }
     }
 
     //change data set of the adapter

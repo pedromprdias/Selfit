@@ -32,7 +32,7 @@ class ListaAlimentosFragment: DialogFragment() {
 
     //define interface to communicate with activity
     interface ListaAlimentosFragmentListener {
-        fun onClickAlimento(dialog: DialogFragment, alimento: Int)
+        fun onClickAlimento(dialog: DialogFragment, alimento: Int, refeicao: String)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -125,7 +125,7 @@ class ListaAlimentosFragment: DialogFragment() {
     }
 
     fun moveToAlimentoFragment(id: String){
-        listener.onClickAlimento(this, id.toInt())
+        listener.onClickAlimento(this, id.toInt(), requireArguments().getString("refeicao")!!)
     }
 
     //attach parent as listener

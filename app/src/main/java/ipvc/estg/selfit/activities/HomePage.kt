@@ -1,12 +1,17 @@
 package ipvc.estg.selfit.activities
 
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -23,9 +28,12 @@ import ipvc.estg.selfit.adapters.RefeicaoAdapter
 import ipvc.estg.selfit.adapters.TreinoAdapter
 import ipvc.estg.selfit.api.*
 import ipvc.estg.selfit.fragments.*
-import java.time.Instant
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 
 class HomePage : AppCompatActivity(),
         ListaAlimentosFragment.ListaAlimentosFragmentListener,
@@ -140,6 +148,10 @@ class HomePage : AppCompatActivity(),
             }
             false
         }
+
+        val data: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyy-MM-dd"))
+
+        getRegistoDia(data)
     }
 
     //change app toolbar on this activity to custom toolbar
@@ -180,7 +192,7 @@ class HomePage : AppCompatActivity(),
         val args = Bundle()
 
         val id: Int = view.findViewById<TextView>(R.id.treinoRecyclerId).text.toString().toInt()
-        val peso: Float = view.findViewById<TextView>(R.id.treinoRecyclerPeso).text.toString().split(" ")[1].toFloat()
+        val peso: Float = view.findViewById<TextView>(R.id.treinoRecyclerPeso).text.toString().split(" ")[1].dropLast(2).toFloat()
         val series: Int = view.findViewById<TextView>(R.id.treinoRecyclerSeries).text.toString().split(" ")[1].toInt()
         val repeticoes: Int = view.findViewById<TextView>(R.id.treinoRecyclerRepeticoes).text.toString().split(" ")[1].toInt()
 
@@ -195,23 +207,176 @@ class HomePage : AppCompatActivity(),
 
     fun alterarAlimento(view: View){
 
+        val alterarAlimentoFragment = AlterarAlimentoFragment()
+
+        val args = Bundle()
+
+        var quantidade: String = view.findViewById<TextView>(R.id.refeicaoRecyclerQuantity).text.toString()
+
+        val id: Int = view.findViewById<TextView>(R.id.refeicaoRecyclerId).text.toString().toInt()
+
+        quantidade = quantidade.substring(0, quantidade.indexOf(' ', 0, false))
+
+        args.putInt("id", id)
+        args.putFloat("quantidade", quantidade.toFloat())
+
+        when(view.parent){
+            findViewById<RecyclerView>(R.id.homePequenoAlmocoRecyclerList) -> args.putString("refeicao", "Pequeno Almoço")
+            findViewById<RecyclerView>(R.id.homeAlmocoRecyclerList) -> args.putString("refeicao", "Almoço")
+            findViewById<RecyclerView>(R.id.homeLancheRecyclerList) -> args.putString("refeicao", "Lanche")
+            findViewById<RecyclerView>(R.id.homeJantarRecyclerList) -> args.putString("refeicao", "Jantar")
+        }
+
+        alterarAlimentoFragment.arguments = args
+        alterarAlimentoFragment.show(supportFragmentManager, "AlterarAlimentoFragment")
     }
 
     fun guardarRefeicao(view: View){
 
+        var tipo: String = ""
+        var idHolder: TextView? = null
+        var id: Int = 0
+        var data: String = findViewById<TextView>(R.id.homeData).text.toString()
+        var alimentos: MutableList<AlimentoInput> = mutableListOf()
+
+        when(view){
+            findViewById<Button>(R.id.homePequenoAlmocoGuardarBtn) -> {
+                tipo = "Pequeno Almoço"
+                idHolder = findViewById(R.id.homePequenoAlmocoId)
+                id = idHolder.text.toString().toInt()
+                alimentosRefeicoes[0].forEach {
+                    alimentos.add(AlimentoInput(id = it.id, quantidade = it.quantidade!!))
+                }
+            }
+            findViewById<Button>(R.id.homeAlmocoGuardarBtn) -> {
+                tipo = "Almoço"
+                idHolder = findViewById(R.id.homeAlmocoId)
+                id = idHolder.text.toString().toInt()
+                alimentosRefeicoes[1].forEach {
+                    alimentos.add(AlimentoInput(id = it.id, quantidade = it.quantidade!!))
+                }
+            }
+            findViewById<Button>(R.id.homeLancheGuardarBtn) -> {
+                tipo = "Lanche"
+                idHolder = findViewById(R.id.homeLancheId)
+                id = idHolder.text.toString().toInt()
+                alimentosRefeicoes[2].forEach {
+                    alimentos.add(AlimentoInput(id = it.id, quantidade = it.quantidade!!))
+                }
+            }
+            findViewById<Button>(R.id.homeJantarGuardarBtn) -> {
+                tipo = "Jantar"
+                idHolder = findViewById(R.id.homeJantarId)
+                id = idHolder.text.toString().toInt()
+                alimentosRefeicoes[3].forEach {
+                    alimentos.add(AlimentoInput(id = it.id, quantidade = it.quantidade!!))
+                }
+            }
+            else -> ""
+        }
+
+        //open shared preferences and get the access token to make a request
+        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+
+        val authorization = "Bearer $accessToken"
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
+
+        var call: Call<PostOutput>
+
+        if(id == 0) call = request.postRefeicao(authorization, RefeicaoInput(tipo, data, alimentos.toList()))
+        else call = request.putRefeicao(authorization, id, RefeicaoInput(tipo, data, alimentos.toList()))
+
+        //make request to get information about all food items using the access token
+        call.enqueue(object : Callback<PostOutput> {
+            override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
+                //if the request is successful store all food items info and display it on the recycler
+                if(response.isSuccessful) {
+                    if(id == null){
+                        idHolder!!.text = response.body()!!.id.toString()
+                    }
+                    Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
+                } else {
+                    //if the call is not successful, check the error code and warn the user accordingly
+                    when (response.code()){
+                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //if there is a connection error warn the user
+            override fun onFailure(call: Call<PostOutput>, t: Throwable) {
+                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     fun guardarTreino(view: View){
 
+        var idHolder: TextView? = null
+        var id: Int = 0
+        var data: String = findViewById<TextView>(R.id.homeData).text.toString()
+        var exercicios: MutableList<ExercicioInput> = mutableListOf()
+
+        idHolder = findViewById(R.id.homeTreinoId)
+        id = idHolder.text.toString().toInt()
+        exerciciosTreinoDiario.forEach {
+            exercicios.add(ExercicioInput(id = it.id, series = it.valores!!.series, peso = it.valores!!.peso, repeticoes = it.valores!!.repeticoes))
+        }
+
+        //open shared preferences and get the access token to make a request
+        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+
+        val authorization = "Bearer $accessToken"
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
+
+        var call: Call<PostOutput>
+        Log.i("aa", id.toString())
+        if(id == 0) call = request.postTreinoDiario(authorization, TreinoDiarioInput(data, exercicios.toList()))
+        else call = request.putTreinoDiario(authorization, id, TreinoDiarioInput(data, exercicios.toList()))
+
+        //make request to get information about all food items using the access token
+        call.enqueue(object : Callback<PostOutput> {
+            override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
+                //if the request is successful store all food items info and display it on the recycler
+                if(response.isSuccessful) {
+                    if(id == null){
+                        idHolder!!.text = response.body()!!.id.toString()
+                    }
+                    Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
+                } else {
+                    //if the call is not successful, check the error code and warn the user accordingly
+                    when (response.code()){
+                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //if there is a connection error warn the user
+            override fun onFailure(call: Call<PostOutput>, t: Throwable) {
+                Log.i("3", 3.toString())
+                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
-    override fun onClickAlimento(dialog: DialogFragment, alimento: Int){
+    override fun onClickAlimento(dialog: DialogFragment, alimento: Int, refeicao: String){
 
         val adicionarAlimentoFragment = AdicionarAlimentoFragment()
 
         val args = Bundle()
 
         args.putInt("id", alimento)
+        args.putString("refeicao", refeicao)
 
         adicionarAlimentoFragment.arguments = args
         adicionarAlimentoFragment.show(supportFragmentManager, "AdicionarAlimentoFragment")
@@ -247,9 +412,22 @@ class HomePage : AppCompatActivity(),
 
     private fun addAlimento(index: Int, alimento: Alimento){
 
-        alimentosRefeicoes[index].add(Alimento(alimento.id))
+        var existe = false
 
-        adaptersRefeicoes[0].setAlimentos(alimentosRefeicoes[index].toList())
+        alimentosRefeicoes[index].forEach {
+            if(it.id == alimento.id){
+                existe = true
+            }
+        }
+
+        if(existe){
+            Toast.makeText(this@HomePage, getString(R.string.alimentoJaNaRefeicao), Toast.LENGTH_SHORT).show()
+        } else {
+            alimentosRefeicoes[index].add(alimento)
+            adaptersRefeicoes[index].setAlimentos(alimentosRefeicoes[index].toList())
+        }
+
+        updateValores(index)
     }
 
     override fun onAdicionarExercicio(dialog: DialogFragment, exercicio: Exercicio){
@@ -274,10 +452,56 @@ class HomePage : AppCompatActivity(),
 
     override fun onEditAlimento(dialog: DialogFragment, alimento: Alimento, refeicao: String){
 
+        when(refeicao){
+            "Pequeno Almoço" -> editAlimento(0, alimento)
+            "Almoço" -> editAlimento(1, alimento)
+            "Lanche" -> editAlimento(2, alimento)
+            "Jantar" -> editAlimento(3, alimento)
+        }
+
+        dialog.dismiss()
     }
 
     override fun onDeleteAlimento(dialog: DialogFragment, id: Int, refeicao: String){
 
+        when(refeicao){
+            "Pequeno Almoço" -> rmAlimento(0, id)
+            "Almoço" -> rmAlimento(1, id)
+            "Lanche" -> rmAlimento(2, id)
+            "Jantar" -> rmAlimento(3, id)
+        }
+
+        dialog.dismiss()
+    }
+
+    private fun editAlimento(index: Int, alimento: Alimento){
+
+        alimentosRefeicoes[index].forEach {
+            if(it.id == alimento.id){
+                it.quantidade = alimento.quantidade
+            }
+        }
+
+        adaptersRefeicoes[index].setAlimentos(alimentosRefeicoes[index].toList())
+
+        updateValores(index)
+    }
+
+    private fun rmAlimento(index: Int, id: Int){
+
+        var toRemove: Alimento? = null
+
+        alimentosRefeicoes[index].forEach{
+            if(it.id == id){
+                toRemove = it
+            }
+        }
+
+        if(toRemove != null) alimentosRefeicoes[index].remove(toRemove!!)
+
+        adaptersRefeicoes[index].setAlimentos(alimentosRefeicoes[index].toList())
+
+        updateValores(index)
     }
 
     override fun onEditExercicio(dialog: DialogFragment, exercicio: Exercicio){
@@ -295,14 +519,215 @@ class HomePage : AppCompatActivity(),
 
     override fun onDeleteExercicio(dialog: DialogFragment, id: Int){
 
+        var toRemove: Exercicio? = null
+
         exerciciosTreinoDiario.forEach{
             if(it.id == id){
-                exerciciosTreinoDiario.remove(it)
+                toRemove = it
             }
         }
+
+        if(toRemove != null) exerciciosTreinoDiario.remove(toRemove!!)
 
         adapterTreino.setExercicios(exerciciosTreinoDiario.toList())
 
         dialog.dismiss()
+    }
+
+    private fun updateValores(index: Int){
+
+        var caloriasRefeicao: Float = 0F
+        var caloriasTotal: Float = 0F
+        var proteinasRefeicao: Float = 0F
+        var proteinasTotal: Float = 0F
+        var lipidosRefeicao: Float = 0F
+        var lipidosTotal: Float = 0F
+        var hidratosRefeicao: Float = 0F
+        var hidratosTotal: Float = 0F
+
+        alimentosRefeicoes[index].forEach {
+
+            var tipo: Int = it.tipo!!.substring(0, it.tipo!!.indexOfAny(listOf(" ", "m", "g"), 0, false)).toInt()
+
+            caloriasRefeicao += (it.calorias!!.times(it.quantidade!! / tipo))
+            hidratosRefeicao += (it.hidratosCarbono!!.times(it.quantidade!! / tipo))
+            proteinasRefeicao += (it.proteinas!!.times(it.quantidade!! / tipo))
+            lipidosRefeicao += (it.lipidos!!.times(it.quantidade!! / tipo))
+        }
+
+        alimentosRefeicoes.forEach {
+            it.forEach {
+                var tipo: Int = it.tipo!!.substring(0, it.tipo!!.indexOfAny(listOf(" ", "m", "g"), 0, false)).toInt()
+
+                caloriasTotal += (it.calorias!!.times(it.quantidade!! / tipo))
+                hidratosTotal += (it.hidratosCarbono!!.times(it.quantidade!! / tipo))
+                proteinasTotal += (it.proteinas!!.times(it.quantidade!! / tipo))
+                lipidosTotal += (it.lipidos!!.times(it.quantidade!! / tipo))
+            }
+        }
+
+        when(index){
+            0 -> {
+                findViewById<TextView>(R.id.homePequenoAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
+                findViewById<TextView>(R.id.homePequenoAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homePequenoAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homePequenoAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+            }
+            1 -> {
+                findViewById<TextView>(R.id.homeAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
+                findViewById<TextView>(R.id.homeAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+            }
+            2 -> {
+                findViewById<TextView>(R.id.homeLancheCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
+                findViewById<TextView>(R.id.homeLancheHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeLancheProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeLancheLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+            }
+            3 -> {
+                findViewById<TextView>(R.id.homeJantarCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
+                findViewById<TextView>(R.id.homeJantarHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeJantarProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeJantarLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+            }
+        }
+
+        findViewById<TextView>(R.id.homeTotalCalorias).text = "Calorias: " + caloriasTotal.toString() + "kcal"
+        findViewById<TextView>(R.id.homeTotalHidratos).text = "Hidratos de carbono: " + hidratosTotal.toString() + "g"
+        findViewById<TextView>(R.id.homeTotalProteinas).text = "Proteínas: " + proteinasTotal.toString() + "g"
+        findViewById<TextView>(R.id.homeTotalLipidos).text = "Lípidos: " + lipidosTotal.toString() + "g"
+    }
+
+    fun openCalendar(view: View){
+
+        val c = Calendar.getInstance()
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH)
+
+        val dpd = DatePickerDialog(this@HomePage, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            changeDate(year, monthOfYear, dayOfMonth)
+        }, year, month, day)
+
+        dpd.show()
+    }
+
+    fun changeDate(year: Int, month: Int, day: Int){
+
+        var monthFromatted: String
+        var dayFormatted: String
+        val c = Calendar.getInstance()
+
+        if(month + 1 < 10) monthFromatted = "0" + (month + 1).toString()
+        else monthFromatted = (month + 1).toString()
+
+        if(day < 10) dayFormatted = "0" + day.toString()
+        else dayFormatted = day.toString()
+
+        if(c.get(Calendar.YEAR) * 10000 + c.get(Calendar.MONTH) * 100 + c.get(Calendar.DAY_OF_MONTH) < year * 10000 + month * 100 + day){
+            Toast.makeText(this@HomePage, getString(R.string.registoFuturo), Toast.LENGTH_SHORT).show()
+        } else {
+            getRegistoDia(year.toString() + "-" + monthFromatted + "-" + dayFormatted)
+        }
+    }
+
+    private fun getRegistoDia(data: String){
+
+        findViewById<TextView>(R.id.homeData).text = data
+
+        findViewById<TextView>(R.id.homePequenoAlmocoId).text = ""
+        findViewById<TextView>(R.id.homeAlmocoId).text = ""
+        findViewById<TextView>(R.id.homeLancheId).text = ""
+        findViewById<TextView>(R.id.homeJantarId).text = ""
+        findViewById<TextView>(R.id.homeTreinoId).text = ""
+
+
+        //open shared preferences and get the access token to make a request
+        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+
+        val authorization = "Bearer $accessToken"
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
+        val call = request.getRegisto(authorization, data)
+
+        //make request to get all the information about this page's food item
+        call.enqueue(object : Callback<RegistoOutput> {
+            override fun onResponse(call: Call<RegistoOutput>, response: Response<RegistoOutput>) {
+                //if the request is successful display all the item's information on the page's elements
+                if(response.isSuccessful) {
+
+                    alimentosRefeicoes.forEach {
+                        it.clear()
+                    }
+
+                    exerciciosTreinoDiario.clear()
+
+                    if(response.body()!!.registo!!.pequenoAlmoco.id != null){
+                        findViewById<TextView>(R.id.homePequenoAlmocoId).text = response.body()!!.registo!!.pequenoAlmoco.id.toString()
+                    }
+                    response.body()!!.registo!!.pequenoAlmoco.alimentos.forEach {
+                        alimentosRefeicoes[0].add(it)
+                    }
+
+                    findViewById<TextView>(R.id.homeAlmocoId).text = response.body()!!.registo!!.almoco.id.toString()
+                    response.body()!!.registo!!.almoco.alimentos.forEach {
+                        alimentosRefeicoes[1].add(it)
+                    }
+
+                    findViewById<TextView>(R.id.homeLancheId).text = response.body()!!.registo!!.lanche.id.toString()
+                    response.body()!!.registo!!.lanche.alimentos.forEach {
+                        alimentosRefeicoes[2].add(it)
+                    }
+
+                    findViewById<TextView>(R.id.homeJantarId).text = response.body()!!.registo!!.jantar.id.toString()
+                    response.body()!!.registo!!.jantar.alimentos.forEach {
+                        alimentosRefeicoes[3].add(it)
+                    }
+
+                    findViewById<TextView>(R.id.homeTreinoId).text = response.body()!!.registo!!.treino.id.toString()
+                    response.body()!!.registo!!.treino.exercicios.forEach {
+                        exerciciosTreinoDiario.add(it)
+                    }
+
+                    for(i in 0..3){
+                        adaptersRefeicoes[i].setAlimentos(alimentosRefeicoes[i].toList())
+                        updateValores(i)
+                    }
+
+                    adapterTreino.setExercicios(exerciciosTreinoDiario)
+
+                } else {
+                    //if the call is not successful, check the error code, warn the user accordingly and close this activity
+                    when (response.code()){
+                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        404 -> {
+                            alimentosRefeicoes.forEach {
+                                it.clear()
+                            }
+
+                            exerciciosTreinoDiario.clear()
+
+                            for(i in 0..3){
+                                adaptersRefeicoes[i].setAlimentos(alimentosRefeicoes[i].toList())
+                                updateValores(i)
+                            }
+
+                            adapterTreino.setExercicios(exerciciosTreinoDiario)
+                        }
+                    }
+                }
+            }
+
+            //if there is a connection error warn the user and close this activity
+            override fun onFailure(call: Call<RegistoOutput>, t: Throwable) {
+                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                Log.i("aa", t.message!!)
+            }
+        })
     }
 }

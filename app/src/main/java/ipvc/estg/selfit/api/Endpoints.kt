@@ -48,7 +48,44 @@ interface Endpoints {
     //get all the info of a machine
     @GET("maquinas/{id}")
     fun getMaquina(
-        @Path("id") id: Int,
-        @Header("Authorization") authorization: String
+            @Path("id") id: Int,
+            @Header("Authorization") authorization: String
     ): Call<MaquinaOutput>
+
+    //get all food endpoint
+    @GET("registos")
+    fun getRegisto(
+            @Header("Authorization") authorization: String,
+            @Query("data") data: String
+    ): Call<RegistoOutput>
+
+    //get all food endpoint
+    @POST("refeicoes")
+    fun postRefeicao(
+            @Header("Authorization") authorization: String,
+            @Body body: RefeicaoInput
+    ): Call<PostOutput>
+
+    //get all food endpoint
+    @PUT("refeicoes/{id}")
+    fun putRefeicao(
+            @Header("Authorization") authorization: String,
+            @Path("id") id: Int,
+            @Body body: RefeicaoInput
+    ): Call<PostOutput>
+
+    //get all food endpoint
+    @POST("treinosDiarios")
+    fun postTreinoDiario(
+            @Header("Authorization") authorization: String,
+            @Body body: TreinoDiarioInput
+    ): Call<PostOutput>
+
+    //get all food endpoint
+    @PUT("treinosDiarios/{id}")
+    fun putTreinoDiario(
+            @Header("Authorization") authorization: String,
+            @Path("id") id: Int,
+            @Body body: TreinoDiarioInput
+    ): Call<PostOutput>
 }

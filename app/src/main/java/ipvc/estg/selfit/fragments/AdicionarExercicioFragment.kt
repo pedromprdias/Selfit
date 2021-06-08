@@ -68,7 +68,6 @@ class AdicionarExercicioFragment: DialogFragment() {
 
                         dialogView.findViewById<Button>(R.id.fragmentAdicionarExercicioAddBtn).setOnClickListener {
 
-                            val id: Int = exercicio.id
                             val peso: String = dialogView.findViewById<EditText>(R.id.fragmentAdicionarExercicioPeso).text.toString()
                             val repeticoes: String = dialogView.findViewById<EditText>(R.id.fragmentAdicionarExercicioRepeticoes).text.toString()
                             val series: String = dialogView.findViewById<EditText>(R.id.fragmentAdicionarExercicioSeries).text.toString()

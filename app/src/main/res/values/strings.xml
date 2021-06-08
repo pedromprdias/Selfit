@@ -59,4 +59,9 @@
     <string name="alterar">Alterar</string>
     <string name="remover">Remover</string>
     <string name="exercicioJaNoTreino">Este exercício já se encontra no treino</string>
+    <string name="alimentoJaNaRefeicao">Este alimento já se encontra na refeição</string>
+    <string name="quantidade">Quantidade: </string>
+    <string name="noQuantidade">A quantidade não pode estar vazia</string>
+    <string name="registoFuturo">Não é possível efetuar registos numa data futura</string>
+    <string name="registoSucesso">Registo efetuado com sucesso</string>
 </resources>

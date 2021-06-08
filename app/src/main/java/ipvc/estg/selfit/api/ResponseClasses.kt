@@ -37,22 +37,33 @@ data class ExercicioOutput (
         val exercicio: Exercicio?
 )
 
+data class RegistoOutput(
+        val error: String?,
+        val registo: Registo?
+)
+
+data class PostOutput(
+        val error: String?,
+        val msg: String?,
+        val id: Int?
+)
+
 /*********************************************************/
 
 data class RefeicaoInput(
-        val data: String,
         val tipo: String,
-        val alimentos: MutableList<AlimentoInput>
-)
-
-data class AlimentoInput(
-        val id: Int,
-        val quantidade: Int
+        val data: String,
+        val alimentos: List<AlimentoInput>
 )
 
 data class TreinoDiarioInput(
         val data: String,
-        val exercicios: MutableList<ExercicioInput>
+        val exercicios: List<ExercicioInput>
+)
+
+data class AlimentoInput(
+        val id: Int,
+        val quantidade: Float
 )
 
 data class ExercicioInput(
@@ -64,6 +75,24 @@ data class ExercicioInput(
 
 /*********************************************************/
 
+data class Registo (
+        val pequenoAlmoco: Refeicao,
+        val almoco: Refeicao,
+        val lanche: Refeicao,
+        val jantar: Refeicao,
+        val treino: Treino
+)
+
+data class Refeicao (
+        val alimentos: List<Alimento>,
+        val id: Int
+)
+
+data class Treino(
+        val exercicios: List<Exercicio>,
+        val id: Int
+)
+
 data class Alimento (
         val id: Int,
         val nome: String? = null,
@@ -74,7 +103,7 @@ data class Alimento (
         val proteinas: Float? = null,
         val hidratosCarbono: Float? = null,
         val imagem: Imagem? = null,
-        val quantidade: Int? = null
+        var quantidade: Float? = null
 )
 
 data class Exercicio (

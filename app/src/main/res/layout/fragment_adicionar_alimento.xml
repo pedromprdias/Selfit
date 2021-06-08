@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    android:layout_height="600dp"
+    android:background="#C3BABA">
+
+    <TextView
+        android:id="@+id/fragmentAdicionarAlimentoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragmentAdicionarAlimentoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoTipo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentAdicionarAlimentoImage" />
+
+    <ImageView
+        android:id="@+id/fragmentAdicionarAlimentoImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentAdicionarAlimentoName"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/fragmentAdicionarAlimentoTipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoTable"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentAdicionarAlimentoDescription" />
+
+    <TableLayout
+        android:id="@+id/fragmentAdicionarAlimentoTable"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:background="#CCC8C8"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentAdicionarAlimentoTipo">
+
+        <TableRow
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:background="#AFA3A3">
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoCaloriasText"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="@string/calorias" />
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoProteinasText"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="@string/proteinas" />
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoHidratosText"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center_horizontal|top"
+                android:text="@string/hidratos" />
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoLipidosText"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="@string/lipidos" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:background="#B58F8F">
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoCaloriasValue"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoProteinasValue"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoHidratosValue"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/fragmentAdicionarAlimentoLipidosValue"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="TextView" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/fragmentAdicionarAlimentoAddBtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/adicionar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+
+    <Button
+        android:id="@+id/fragmentAdicionarAlimentoEditBtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/alterar"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toStartOf="@+id/fragmentAdicionarAlimentoRmBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragmentAdicionarAlimentoAddBtn" />
+
+    <Button
+        android:id="@+id/fragmentAdicionarAlimentoRmBtn"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="@string/remover"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fragmentAdicionarAlimentoEditBtn"
+        app:layout_constraintTop_toTopOf="@+id/fragmentAdicionarAlimentoAddBtn" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoAddBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentAdicionarAlimentoTable">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:text="@string/quantidade"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/fragmentAdicionarAlimentoQtdInput"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="#FFFFFF"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fragmentAdicionarAlimentoQtdTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragmentAdicionarAlimentoQtdInput"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

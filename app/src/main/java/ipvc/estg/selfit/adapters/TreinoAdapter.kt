@@ -39,7 +39,7 @@ class TreinoAdapter constructor(context: Context) : RecyclerView.Adapter<TreinoA
         holder.exercicioNome.text = current.nome
         holder.exercicioId.text = current.id.toString()
         holder.exercicioImage.setImageBitmap(bitmap)
-        holder.exercicioPeso.text = "Peso: " + current.valores!!.peso.toString()
+        holder.exercicioPeso.text = "Peso: " + current.valores!!.peso.toString() + "kg"
         holder.exercicioSeries.text = "Séries: " + current.valores!!.series.toString()
         holder.exercicioRepeticoes.text = "Repetições: " + current.valores!!.repeticoes.toString()
     }
