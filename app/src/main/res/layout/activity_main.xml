@@ -3,79 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/nomeUtilizador"
-        android:layout_width="161dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/nomeUser"
-        app:layout_constraintBottom_toTopOf="@+id/inserir_nome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+    android:layout_height="match_parent"
+    android:background="#272829">
 
     <EditText
         android:id="@+id/inserir_pass"
-        android:layout_width="173dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="28dp"
         android:ems="10"
+        android:fontFamily="@font/mazzardsoftm_light"
+        android:hint="@string/password"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/keepLoggedCheckbox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/password"
-        android:layout_width="161dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="32dp"
-        android:text="Password"
-        app:layout_constraintBottom_toTopOf="@+id/inserir_pass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/inserir_nome"
-        android:layout_width="169dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="20dp"
         android:ems="10"
+        android:fontFamily="@font/mazzardsoftm_light"
+        android:hint="@string/nomeUser"
+        android:includeFontPadding="false"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/password"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/inserir_pass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/login_button"
-        android:layout_width="169dp"
-        android:layout_height="40dp"
+        android:layout_width="167dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="80dp"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:onClick="login"
         android:text="Login"
-        app:backgroundTint="#4f4f57"
+        android:textSize="21sp"
+        app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#282828" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="205dp"
         android:layout_height="205dp"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/nomeUtilizador"
+        app:layout_constraintBottom_toTopOf="@+id/inserir_nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.276"
         app:srcCompat="@drawable/logo" />
 
     <CheckBox
@@ -83,7 +73,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/keepMeLogged"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:textSize="18sp"
+        app:buttonTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

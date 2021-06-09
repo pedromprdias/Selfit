@@ -1,609 +1,658 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayoutHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerLayoutHome"
+    android:background="#F7000000"
     android:fitsSystemWindows="true"
-    android:background="#F7FFFFFF"
     android:minWidth="19dp">
 
-        <LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F7121212"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#F7FFFFFF"
-            android:orientation="vertical">
+            android:background="#121212"
+            android:fontFamily="@font/mazzardsoftm_light"
+            app:subtitleTextColor="#FFFFFF"
+            app:titleTextAppearance="@style/tiago"
+            app:titleTextColor="#FFFFFF">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarHome"
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mazzardsoftm_light"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#000000">
+
+            <TextView
+                android:id="@+id/homeData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/mazzardsoftm_light"
+                android:text="TextView"
+                android:textColor="#8C8888"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/homeCalendar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+
+                android:background="@android:drawable/ic_menu_my_calendar"
+                android:onClick="openCalendar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#0000FF"
-                app:subtitleTextColor="#0A0A0A"
-                app:titleTextColor="#111111">
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/toolbar_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
-            </androidx.appcompat.widget.Toolbar>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#03A9F4">
-
-                <TextView
-                    android:id="@+id/homeData"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageButton
-                    android:id="@+id/homeCalendar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="openCalendar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_my_calendar" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
+                    android:id="@+id/textView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:layout_height="69dp"
+                    android:fontFamily="@font/mazzardsoftm_light"
+                    android:paddingLeft="10dp"
+                    android:text="@string/refeicoes"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/refeicoes" />
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp">
-
-                        <TextView
-                            android:id="@+id/homeTotalCalorias"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toTopOf="@+id/homeTotalHidratos"
-                            app:layout_constraintEnd_toStartOf="@+id/homeTotalProteinas"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/homeTotalHidratos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/homeTotalLipidos"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/homeTotalCalorias" />
-
-                        <TextView
-                            android:id="@+id/homeTotalLipidos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/homeTotalHidratos"
-                            app:layout_constraintTop_toBottomOf="@+id/homeTotalProteinas" />
-
-                        <TextView
-                            android:id="@+id/homeTotalProteinas"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            app:layout_constraintBottom_toTopOf="@+id/homeTotalLipidos"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toEndOf="@+id/homeTotalCalorias"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/pequenoAlmoco"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout4"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView3">
-
-                            <TextView
-                                android:id="@+id/homePequenoAlmocoId"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:visibility="invisible"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoCalorias" />
-
-                            <TextView
-                                android:id="@+id/homePequenoAlmocoCalorias"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homePequenoAlmocoHidratos"
-                                app:layout_constraintEnd_toStartOf="@+id/homePequenoAlmocoProteinas"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/homePequenoAlmocoHidratos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/homePequenoAlmocoLipidos"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoCalorias" />
-
-                            <TextView
-                                android:id="@+id/homePequenoAlmocoLipidos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoHidratos"
-                                app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoProteinas" />
-
-                            <TextView
-                                android:id="@+id/homePequenoAlmocoProteinas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homePequenoAlmocoLipidos"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoCalorias"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/homePequenoAlmocoRecyclerList"
-                            android:layout_width="380dp"
-                            android:layout_height="140dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
-
-                        </androidx.recyclerview.widget.RecyclerView>
-
-                        <Button
-                            android:id="@+id/homePequenoAlmocoGuardarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="guardarRefeicao"
-                            android:text="@string/guardar"
-                            app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoAdicionarBtn"
-                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
-
-                        <Button
-                            android:id="@+id/homePequenoAlmocoAdicionarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="adicionarAlimento"
-                            android:text="@string/adicionar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/almoco"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout6"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView5">
-
-                            <TextView
-                                android:id="@+id/homeAlmocoId"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:visibility="invisible"
-                                app:layout_constraintBottom_toBottomOf="@+id/homeAlmocoCalorias"
-                                app:layout_constraintEnd_toStartOf="@+id/homeAlmocoCalorias" />
-
-                            <TextView
-                                android:id="@+id/homeAlmocoCalorias"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homeAlmocoHidratos"
-                                app:layout_constraintEnd_toStartOf="@+id/homeAlmocoProteinas"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/homeAlmocoHidratos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/homeAlmocoLipidos"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/homeAlmocoCalorias" />
-
-                            <TextView
-                                android:id="@+id/homeAlmocoLipidos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homeAlmocoHidratos"
-                                app:layout_constraintTop_toBottomOf="@+id/homeAlmocoProteinas" />
-
-                            <TextView
-                                android:id="@+id/homeAlmocoProteinas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homeAlmocoLipidos"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homeAlmocoCalorias"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/homeAlmocoRecyclerList"
-                            android:layout_width="380dp"
-                            android:layout_height="140dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-                        </androidx.recyclerview.widget.RecyclerView>
-
-                        <Button
-                            android:id="@+id/homeAlmocoAdicionarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="adicionarAlimento"
-                            android:text="@string/adicionar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
-
-                        <Button
-                            android:id="@+id/homeAlmocoGuardarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="guardarRefeicao"
-                            android:text="@string/guardar"
-                            app:layout_constraintStart_toEndOf="@+id/homeAlmocoAdicionarBtn"
-                            app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/lanche"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout7"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView6">
-
-                            <TextView
-                                android:id="@+id/homeLancheId"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:visibility="invisible"
-                                app:layout_constraintBottom_toTopOf="@+id/homeLancheHidratos"
-                                app:layout_constraintEnd_toStartOf="@+id/homeLancheCalorias" />
-
-                            <TextView
-                                android:id="@+id/homeLancheCalorias"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homeLancheHidratos"
-                                app:layout_constraintEnd_toStartOf="@+id/homeLancheProteinas"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/homeLancheHidratos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/homeLancheLipidos"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/homeLancheCalorias" />
-
-                            <TextView
-                                android:id="@+id/homeLancheLipidos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homeLancheHidratos"
-                                app:layout_constraintTop_toBottomOf="@+id/homeLancheProteinas" />
-
-                            <TextView
-                                android:id="@+id/homeLancheProteinas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homeLancheLipidos"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homeLancheCalorias"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/homeLancheRecyclerList"
-                            android:layout_width="380dp"
-                            android:layout_height="140dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
-
-                        </androidx.recyclerview.widget.RecyclerView>
-
-                        <Button
-                            android:id="@+id/homeLancheAdicionarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="adicionarAlimento"
-                            android:text="@string/adicionar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
-
-                        <Button
-                            android:id="@+id/homeLancheGuardarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="guardarRefeicao"
-                            android:text="@string/guardar"
-                            app:layout_constraintStart_toEndOf="@+id/homeLancheAdicionarBtn"
-                            app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:id="@+id/textView7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/jantar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/constraintLayout8"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-                            <TextView
-                                android:id="@+id/homeJantarId"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:visibility="invisible"
-                                app:layout_constraintBottom_toBottomOf="@+id/homeJantarCalorias"
-                                app:layout_constraintEnd_toStartOf="@+id/homeJantarCalorias" />
-
-                            <TextView
-                                android:id="@+id/homeJantarCalorias"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homeJantarHidratos"
-                                app:layout_constraintEnd_toStartOf="@+id/homeJantarProteinas"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/homeJantarHidratos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toStartOf="@+id/homeJantarLipidos"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/homeJantarCalorias" />
-
-                            <TextView
-                                android:id="@+id/homeJantarLipidos"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homeJantarHidratos"
-                                app:layout_constraintTop_toBottomOf="@+id/homeJantarProteinas" />
-
-                            <TextView
-                                android:id="@+id/homeJantarProteinas"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="TextView"
-                                app:layout_constraintBottom_toTopOf="@+id/homeJantarLipidos"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toEndOf="@+id/homeJantarCalorias"
-                                app:layout_constraintTop_toTopOf="parent" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/homeJantarRecyclerList"
-                            android:layout_width="380dp"
-                            android:layout_height="140dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
-
-                        </androidx.recyclerview.widget.RecyclerView>
-
-                        <Button
-                            android:id="@+id/homeJantarAdicionarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="adicionarAlimento"
-                            android:text="@string/adicionar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
-
-                        <Button
-                            android:id="@+id/homeJantarGuardarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="guardarRefeicao"
-                            android:text="@string/guardar"
-                            app:layout_constraintStart_toEndOf="@+id/homeJantarAdicionarBtn"
-                            app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <TextView
-                        android:id="@+id/textView2"
+                        android:id="@+id/homeTotalCalorias"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/treinoDiario" />
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="TextView"
+                        android:textAppearance="@style/textoInformacaoAlimento"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintBottom_toTopOf="@+id/homeTotalHidratos"
+                        app:layout_constraintEnd_toStartOf="@+id/homeTotalProteinas"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/homeTreinoId"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:text="0"
-                        android:visibility="invisible" />
+                        android:id="@+id/homeTotalHidratos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="TextView"
+                        android:textAppearance="@style/textoInformacaoAlimento"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/homeTotalLipidos"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/homeTotalCalorias" />
+
+                    <TextView
+                        android:id="@+id/homeTotalLipidos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="TextView"
+                        android:textAppearance="@style/textoInformacaoAlimento"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/homeTotalHidratos"
+                        app:layout_constraintTop_toBottomOf="@+id/homeTotalProteinas" />
+
+                    <TextView
+                        android:id="@+id/homeTotalProteinas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="TextView"
+                        android:textAppearance="@style/textoInformacaoAlimento"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintBottom_toTopOf="@+id/homeTotalLipidos"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/homeTotalCalorias"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:paddingLeft="10dp"
+                        android:text="@string/pequenoAlmoco"
+                        android:textAppearance="@style/textoInformacaoAlimento"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout4"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="50dp"
+                        android:layout_marginTop="14dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3"
+                        tools:layout_editor_absoluteX="0dp">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/homeTreinoRecyclerList"
-                            android:layout_width="380dp"
-                            android:layout_height="200dp"
-                            app:layout_constraintEnd_toEndOf="parent"
+                        <TextView
+                            android:id="@+id/homePequenoAlmocoId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:visibility="invisible"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoCalorias" />
+
+                        <TextView
+                            android:id="@+id/homePequenoAlmocoCalorias"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
+                            app:layout_constraintBottom_toTopOf="@+id/homePequenoAlmocoHidratos"
+                            app:layout_constraintEnd_toStartOf="@+id/homePequenoAlmocoProteinas"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <Button
-                            android:id="@+id/homeTreinoAdicionarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="adicionarExercicio"
-                            android:text="@string/adicionar"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
-
-                        <Button
-                            android:id="@+id/homeTreinoGuardarBtn"
-                            android:layout_width="120dp"
-                            android:layout_height="wrap_content"
-                            android:onClick="guardarTreino"
-                            android:text="@string/guardar"
-                            app:layout_constraintStart_toEndOf="@+id/homeTreinoAdicionarBtn"
-                            app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
-
-                        <Button
-                            android:id="@+id/homeTreinoCarregarBtn"
+                        <TextView
+                            android:id="@+id/homePequenoAlmocoHidratos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/carregarTreino"
-                            app:layout_constraintStart_toEndOf="@+id/homeTreinoGuardarBtn"
-                            app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/homePequenoAlmocoLipidos"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoCalorias" />
+
+                        <TextView
+                            android:id="@+id/homePequenoAlmocoLipidos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoHidratos"
+                            app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoProteinas" />
+
+                        <TextView
+                            android:id="@+id/homePequenoAlmocoProteinas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
+                            app:layout_constraintBottom_toTopOf="@+id/homePequenoAlmocoLipidos"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoCalorias"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
-                </LinearLayout>
-            </ScrollView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homePequenoAlmocoRecyclerList"
+                        android:layout_width="380dp"
+                        android:layout_height="140dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
-        </LinearLayout>
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <Button
+                        android:id="@+id/homePequenoAlmocoGuardarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="guardarRefeicao"
+                        android:text="@string/guardar"
+                        app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoAdicionarBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
+
+                    <Button
+                        android:id="@+id/homePequenoAlmocoAdicionarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="adicionarAlimento"
+                        android:text="@string/adicionar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="@string/almoco"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+                        <TextView
+                            android:id="@+id/homeAlmocoId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/homeAlmocoCalorias"
+                            app:layout_constraintEnd_toStartOf="@+id/homeAlmocoCalorias" />
+
+                        <TextView
+                            android:id="@+id/homeAlmocoCalorias"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/homeAlmocoHidratos"
+                            app:layout_constraintEnd_toStartOf="@+id/homeAlmocoProteinas"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/homeAlmocoHidratos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/homeAlmocoLipidos"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeAlmocoCalorias" />
+
+                        <TextView
+                            android:id="@+id/homeAlmocoLipidos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homeAlmocoHidratos"
+                            app:layout_constraintTop_toBottomOf="@+id/homeAlmocoProteinas" />
+
+                        <TextView
+                            android:id="@+id/homeAlmocoProteinas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/homeAlmocoLipidos"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homeAlmocoCalorias"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homeAlmocoRecyclerList"
+                        android:layout_width="380dp"
+                        android:layout_height="140dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <Button
+                        android:id="@+id/homeAlmocoAdicionarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="adicionarAlimento"
+                        android:text="@string/adicionar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
+
+                    <Button
+                        android:id="@+id/homeAlmocoGuardarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="guardarRefeicao"
+                        android:text="@string/guardar"
+                        app:layout_constraintStart_toEndOf="@+id/homeAlmocoAdicionarBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="@string/lanche"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+                        <TextView
+                            android:id="@+id/homeLancheId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toTopOf="@+id/homeLancheHidratos"
+                            app:layout_constraintEnd_toStartOf="@+id/homeLancheCalorias" />
+
+                        <TextView
+                            android:id="@+id/homeLancheCalorias"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/homeLancheHidratos"
+                            app:layout_constraintEnd_toStartOf="@+id/homeLancheProteinas"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/homeLancheHidratos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/homeLancheLipidos"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeLancheCalorias" />
+
+                        <TextView
+                            android:id="@+id/homeLancheLipidos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homeLancheHidratos"
+                            app:layout_constraintTop_toBottomOf="@+id/homeLancheProteinas" />
+
+                        <TextView
+                            android:id="@+id/homeLancheProteinas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/homeLancheLipidos"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homeLancheCalorias"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homeLancheRecyclerList"
+                        android:layout_width="380dp"
+                        android:layout_height="140dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <Button
+                        android:id="@+id/homeLancheAdicionarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="adicionarAlimento"
+                        android:text="@string/adicionar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
+
+                    <Button
+                        android:id="@+id/homeLancheGuardarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="guardarRefeicao"
+                        android:text="@string/guardar"
+                        app:layout_constraintStart_toEndOf="@+id/homeLancheAdicionarBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:text="@string/jantar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+                        <TextView
+                            android:id="@+id/homeJantarId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="@+id/homeJantarCalorias"
+                            app:layout_constraintEnd_toStartOf="@+id/homeJantarCalorias" />
+
+                        <TextView
+                            android:id="@+id/homeJantarCalorias"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/homeJantarHidratos"
+                            app:layout_constraintEnd_toStartOf="@+id/homeJantarProteinas"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/homeJantarHidratos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/homeJantarLipidos"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/homeJantarCalorias" />
+
+                        <TextView
+                            android:id="@+id/homeJantarLipidos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homeJantarHidratos"
+                            app:layout_constraintTop_toBottomOf="@+id/homeJantarProteinas" />
+
+                        <TextView
+                            android:id="@+id/homeJantarProteinas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            app:layout_constraintBottom_toTopOf="@+id/homeJantarLipidos"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toEndOf="@+id/homeJantarCalorias"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homeJantarRecyclerList"
+                        android:layout_width="380dp"
+                        android:layout_height="140dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <Button
+                        android:id="@+id/homeJantarAdicionarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="adicionarAlimento"
+                        android:text="@string/adicionar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
+
+                    <Button
+                        android:id="@+id/homeJantarGuardarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="guardarRefeicao"
+                        android:text="@string/guardar"
+                        app:layout_constraintStart_toEndOf="@+id/homeJantarAdicionarBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/mazzardsoftm_light"
+                    android:text="@string/treinoDiario" />
+
+                <TextView
+                    android:id="@+id/homeTreinoId"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:text="0"
+                    android:visibility="invisible" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/homeTreinoRecyclerList"
+                        android:layout_width="380dp"
+                        android:layout_height="200dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Button
+                        android:id="@+id/homeTreinoAdicionarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="adicionarExercicio"
+                        android:text="@string/adicionar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+
+                    <Button
+                        android:id="@+id/homeTreinoGuardarBtn"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:onClick="guardarTreino"
+                        android:text="@string/guardar"
+                        app:layout_constraintStart_toEndOf="@+id/homeTreinoAdicionarBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+
+                    <Button
+                        android:id="@+id/homeTreinoCarregarBtn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/carregarTreino"
+                        app:layout_constraintStart_toEndOf="@+id/homeTreinoGuardarBtn"
+                        app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/navigation_drawer_menu">
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/navigation_drawer_menu"></com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
