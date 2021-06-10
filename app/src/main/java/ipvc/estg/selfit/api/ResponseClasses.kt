@@ -42,6 +42,16 @@ data class RegistoOutput(
         val registo: Registo?
 )
 
+data class AllMedidasOutput(
+        val error: String?,
+        val listaMedidas: List<Medida>?
+)
+
+data class MedidaOutput(
+        val error: String?,
+        val medida: Medida?
+)
+
 data class PostOutput(
         val error: String?,
         val msg: String?,
@@ -142,4 +152,13 @@ data class Musculo (
 data class Imagem (
         val type: String,
         val data: ByteArray
+)
+
+data class Medida(
+        val data: String,
+        val peso: Float,
+        val altura: Int,
+        val gordura: Float,
+        val pesoMeta: Float,
+        val gorduraMeta: Float
 )

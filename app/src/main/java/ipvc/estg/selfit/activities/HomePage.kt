@@ -4,14 +4,11 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -31,6 +28,8 @@ import ipvc.estg.selfit.fragments.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -41,7 +40,8 @@ class HomePage : AppCompatActivity(),
         AlterarAlimentoFragment.AlterarAlimentoFragmentListener,
         AlterarExercicioFragment.AlterarExercicioFragmentListener,
         AdicionarAlimentoFragment.AdicionarAlimentoFragmentListener,
-        AdicionarExercicioFragment.AdicionarExercicioFragmentListener {
+        AdicionarExercicioFragment.AdicionarExercicioFragmentListener,
+        PedirMedidasFragment.PedirMedidasFragmentListener {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -50,6 +50,7 @@ class HomePage : AppCompatActivity(),
     private lateinit var adapterTreino: TreinoAdapter
     private lateinit var alimentosRefeicoes: MutableList<MutableList<Alimento>>
     private lateinit var exerciciosTreinoDiario: MutableList<Exercicio>
+    private var ultimaMedida: Medida? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -152,6 +153,7 @@ class HomePage : AppCompatActivity(),
         val data: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyy-MM-dd"))
 
         getRegistoDia(data)
+        getUltimaMedida()
     }
 
     //change app toolbar on this activity to custom toolbar
@@ -289,10 +291,8 @@ class HomePage : AppCompatActivity(),
         if(id == 0) call = request.postRefeicao(authorization, RefeicaoInput(tipo, data, alimentos.toList()))
         else call = request.putRefeicao(authorization, id, RefeicaoInput(tipo, data, alimentos.toList()))
 
-        //make request to get information about all food items using the access token
         call.enqueue(object : Callback<PostOutput> {
             override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
-                //if the request is successful store all food items info and display it on the recycler
                 if(response.isSuccessful) {
                     if(id == null){
                         idHolder!!.text = response.body()!!.id.toString()
@@ -338,14 +338,12 @@ class HomePage : AppCompatActivity(),
         val request = ServiceBuilder.buildService(Endpoints::class.java)
 
         var call: Call<PostOutput>
-        Log.i("aa", id.toString())
+
         if(id == 0) call = request.postTreinoDiario(authorization, TreinoDiarioInput(data, exercicios.toList()))
         else call = request.putTreinoDiario(authorization, id, TreinoDiarioInput(data, exercicios.toList()))
 
-        //make request to get information about all food items using the access token
         call.enqueue(object : Callback<PostOutput> {
             override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
-                //if the request is successful store all food items info and display it on the recycler
                 if(response.isSuccessful) {
                     if(id == null){
                         idHolder!!.text = response.body()!!.id.toString()
@@ -363,7 +361,6 @@ class HomePage : AppCompatActivity(),
 
             //if there is a connection error warn the user
             override fun onFailure(call: Call<PostOutput>, t: Throwable) {
-                Log.i("3", 3.toString())
                 Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
             }
         })
@@ -642,7 +639,6 @@ class HomePage : AppCompatActivity(),
         findViewById<TextView>(R.id.homeJantarId).text = ""
         findViewById<TextView>(R.id.homeTreinoId).text = ""
 
-
         //open shared preferences and get the access token to make a request
         var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
 
@@ -653,10 +649,8 @@ class HomePage : AppCompatActivity(),
         val request = ServiceBuilder.buildService(Endpoints::class.java)
         val call = request.getRegisto(authorization, data)
 
-        //make request to get all the information about this page's food item
         call.enqueue(object : Callback<RegistoOutput> {
             override fun onResponse(call: Call<RegistoOutput>, response: Response<RegistoOutput>) {
-                //if the request is successful display all the item's information on the page's elements
                 if(response.isSuccessful) {
 
                     alimentosRefeicoes.forEach {
@@ -726,8 +720,127 @@ class HomePage : AppCompatActivity(),
             //if there is a connection error warn the user and close this activity
             override fun onFailure(call: Call<RegistoOutput>, t: Throwable) {
                 Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
-                Log.i("aa", t.message!!)
             }
         })
+    }
+
+    private fun getUltimaMedida(){
+
+        //open shared preferences and get the access token to make a request
+        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+
+        val authorization = "Bearer $accessToken"
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
+        val call = request.getUltimaMedida(authorization)
+
+        //make request to get all the information about this page's food item
+        call.enqueue(object : Callback<MedidaOutput> {
+            @RequiresApi(Build.VERSION_CODES.O)
+            override fun onResponse(call: Call<MedidaOutput>, response: Response<MedidaOutput>) {
+                //if the request is successful display all the item's information on the page's elements
+                if(response.isSuccessful) {
+
+                    var pedir: Boolean = sharedPreferences.getBoolean("pedirMedidas", true)
+
+                    if(response.body()!!.medida != null){
+                        ultimaMedida = response.body()!!.medida
+
+                        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+                        if(LocalDate.parse(Instant.now().toString().substring(0, 10), formatter).isAfter(LocalDate.parse(Instant.parse(ultimaMedida!!.data).toString().substring(0, 10), formatter).plusDays(7))){
+                            pedirMedida(pedir)
+                        }
+
+                    } else pedirMedida(pedir)
+                } else {
+                    //if the call is not successful, check the error code, warn the user accordingly and close this activity
+                    when (response.code()){
+                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //if there is a connection error warn the user and close this activity
+            override fun onFailure(call: Call<MedidaOutput>, t: Throwable) {
+                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun clickPedirMedidas(view: View){
+        var formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        if(LocalDate.parse(Instant.now().toString().substring(0, 10), formatter).isAfter(LocalDate.parse(Instant.parse(ultimaMedida!!.data).toString().substring(0, 10), formatter).plusDays(7))){
+            pedirMedida(true)
+        } else {
+            Toast.makeText(this@HomePage, getString(R.string.naoPassouUmaSemana), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun pedirMedida(pedir: Boolean){
+
+        if(pedir){
+            PedirMedidasFragment().show(supportFragmentManager, "PedirMedidasFragment")
+        }
+    }
+
+    override fun onGuardarMedidas(dialog: DialogFragment, medida: Medida, naoPedir: Boolean) {
+
+        //open shared preferences and get the access token to make a request
+        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+
+        val authorization = "Bearer $accessToken"
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
+        val call = request.postMedida(authorization, medida)
+
+        call.enqueue(object : Callback<PostOutput> {
+            override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
+                if(response.isSuccessful) {
+                    Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
+
+                    getUltimaMedida()
+                } else {
+                    //if the call is not successful, check the error code, warn the user accordingly and close this activity
+                    when (response.code()){
+                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //if there is a connection error warn the user and close this activity
+            override fun onFailure(call: Call<PostOutput>, t: Throwable) {
+                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        with (sharedPreferences.edit()) {
+            putBoolean("pedirMedidas", !naoPedir)
+            commit()
+        }
+
+        dialog.dismiss()
+    }
+
+    override fun onCancelarGuardarMedidas(dialog: DialogFragment, naoPedir: Boolean) {
+
+        val sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+
+        with (sharedPreferences.edit()) {
+            putBoolean("pedirMedidas", !naoPedir)
+            commit()
+        }
+
+        dialog.dismiss()
     }
 }

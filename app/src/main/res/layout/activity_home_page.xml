@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#121212"
-            android:fontFamily="@font/mazzardsoftm_light"
+            android:fontFamily="@font/manrope_bold"
             app:subtitleTextColor="#FFFFFF"
             app:titleTextAppearance="@style/tiago"
             app:titleTextColor="#FFFFFF">
@@ -30,7 +30,7 @@
                 android:id="@+id/toolbar_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/mazzardsoftm_light"
+                android:fontFamily="@font/manrope_bold"
                 android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="20sp" />
@@ -45,7 +45,7 @@
                 android:id="@+id/homeData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/mazzardsoftm_light"
+                android:fontFamily="@font/manrope_bold"
                 android:text="TextView"
                 android:textColor="#8C8888"
                 android:textSize="24sp"
@@ -68,6 +68,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/homeMeasurements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="clickPedirMedidas"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/alert_light_frame" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ScrollView
@@ -83,7 +92,7 @@
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="69dp"
-                    android:fontFamily="@font/mazzardsoftm_light"
+                    android:fontFamily="@font/manrope_bold"
                     android:paddingLeft="10dp"
                     android:text="@string/refeicoes"
                     android:textColor="#FFFFFF"
@@ -97,7 +106,7 @@
                         android:id="@+id/homeTotalCalorias"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="TextView"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
@@ -111,7 +120,7 @@
                         android:id="@+id/homeTotalHidratos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="TextView"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
@@ -125,7 +134,7 @@
                         android:id="@+id/homeTotalLipidos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="TextView"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
@@ -139,7 +148,7 @@
                         android:id="@+id/homeTotalProteinas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="TextView"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
@@ -160,7 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="26dp"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:paddingLeft="10dp"
                         android:text="@string/pequenoAlmoco"
                         android:textAppearance="@style/textoInformacaoAlimento"
@@ -189,7 +198,7 @@
                             android:id="@+id/homePequenoAlmocoCalorias"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:fontFamily="@font/manrope_bold"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -203,7 +212,7 @@
                             android:id="@+id/homePequenoAlmocoHidratos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:fontFamily="@font/manrope_bold"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -217,7 +226,7 @@
                             android:id="@+id/homePequenoAlmocoLipidos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:fontFamily="@font/manrope_bold"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -231,7 +240,7 @@
                             android:id="@+id/homePequenoAlmocoProteinas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/mazzardsoftm_light"
+                            android:fontFamily="@font/manrope_bold"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -282,7 +291,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="@string/almoco"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -387,7 +396,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="@string/lanche"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -492,7 +501,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/mazzardsoftm_light"
+                        android:fontFamily="@font/manrope_bold"
                         android:text="@string/jantar"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -592,7 +601,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/mazzardsoftm_light"
+                    android:fontFamily="@font/manrope_bold"
                     android:text="@string/treinoDiario" />
 
                 <TextView
