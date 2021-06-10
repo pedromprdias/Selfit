@@ -52,21 +52,21 @@ interface Endpoints {
             @Header("Authorization") authorization: String
     ): Call<MaquinaOutput>
 
-    //get all food endpoint
+    //get all the info of a day
     @GET("registos")
     fun getRegisto(
             @Header("Authorization") authorization: String,
             @Query("data") data: String
     ): Call<RegistoOutput>
 
-    //get all food endpoint
+    //post the information of a meal
     @POST("refeicoes")
     fun postRefeicao(
             @Header("Authorization") authorization: String,
             @Body body: RefeicaoInput
     ): Call<PostOutput>
 
-    //get all food endpoint
+    //change the information of a meal
     @PUT("refeicoes/{id}")
     fun putRefeicao(
             @Header("Authorization") authorization: String,
@@ -74,18 +74,31 @@ interface Endpoints {
             @Body body: RefeicaoInput
     ): Call<PostOutput>
 
-    //get all food endpoint
+    //post the information of a day's workout
     @POST("treinosDiarios")
     fun postTreinoDiario(
             @Header("Authorization") authorization: String,
             @Body body: TreinoDiarioInput
     ): Call<PostOutput>
 
-    //get all food endpoint
+    //change the information of a day's workout
     @PUT("treinosDiarios/{id}")
     fun putTreinoDiario(
             @Header("Authorization") authorization: String,
             @Path("id") id: Int,
             @Body body: TreinoDiarioInput
+    ): Call<PostOutput>
+
+    //get the last registed body measure
+    @GET("ultimaMedida")
+    fun getUltimaMedida(
+            @Header("Authorization") authorization: String
+    ): Call<MedidaOutput>
+
+    //post body measures
+    @POST("medidas")
+    fun postMedida(
+            @Header("Authorization") authorization: String,
+            @Body body: Medida
     ): Call<PostOutput>
 }

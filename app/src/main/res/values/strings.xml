@@ -65,4 +65,19 @@
     <string name="noQuantidade">A quantidade não pode estar vazia</string>
     <string name="registoFuturo">Não é possível efetuar registos numa data futura</string>
     <string name="registoSucesso">Registo efetuado com sucesso</string>
+    <string name="naoPedirMedidas">Não pedir medidas corporais automaticamente todas as semanas</string>
+    <string name="cm">cm</string>
+    <string name="kg">kg</string>
+    <string name="percent">%</string>
+    <string name="pedirMedidasText">Será pedido semanalmente para inserir as suas medidas corporais atuais, bem como as suas metas, para serem criados gráficos com o seu progresso. Pode desligar esta funcionalidade e inserir os dados manualmente quando quiseres, tendo pelo menos um intervalo de uma semana entre registos.</string>
+    <string name="altura">Altura:</string>
+    <string name="pesoMeta">Meta de peso:</string>
+    <string name="percentGordura">Percentagem de gordura:</string>
+    <string name="metaGordura">Meta de gordura:</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="noAltura">A altura não pode estar vazia</string>
+    <string name="noPesoMeta">O peso meta não pode estar vazio</string>
+    <string name="noGordura">A percentagem de gordura não pode estar vazia</string>
+    <string name="noMetaGordura">A meta de percentagem de gordura não pode estar vazia</string>
+    <string name="naoPassouUmaSemana">Ainda não passaram 7 dias desde o último registo de medidas</string>
 </resources>
