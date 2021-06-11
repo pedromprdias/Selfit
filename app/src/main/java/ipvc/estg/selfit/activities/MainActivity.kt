@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         //if so, move to home page
         if(autoLogin) {
-            val intent = Intent(this@MainActivity, HomePage::class.java)
+            val intent = Intent(this@MainActivity, Progresso::class.java)
             startActivity(intent)
             finish()
             //else, open the shared preferences and get the token and if messages should be displayed

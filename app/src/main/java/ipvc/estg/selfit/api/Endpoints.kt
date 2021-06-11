@@ -101,4 +101,10 @@ interface Endpoints {
             @Header("Authorization") authorization: String,
             @Body body: Medida
     ): Call<PostOutput>
+
+    //get all the body measures registries of the user
+    @GET("medidas")
+    fun getAllMedidas(
+        @Header("Authorization") authorization: String
+    ): Call<AllMedidasOutput>
 }

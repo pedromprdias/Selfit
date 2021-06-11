@@ -16,6 +16,12 @@
         <item name="Gémeos">Gémeos</item>
         <item name="Abdominais">Abdominais</item>
     </string-array>
+    <string-array name="periodoTempo">
+        <item name="Último Mês">Último mês</item>
+        <item name="Últimos 6 Meses">Últimos seis meses</item>
+        <item name="Último Ano">Último ano</item>
+        <item name="Sempre">Sempre</item>
+    </string-array>
     <string name="app_name">Selfit</string>
     <string name="password">Palavra-passe</string>
     <string name="nomeUser" translatable="false">Utilizador</string>
@@ -80,4 +86,7 @@
     <string name="noGordura">A percentagem de gordura não pode estar vazia</string>
     <string name="noMetaGordura">A meta de percentagem de gordura não pode estar vazia</string>
     <string name="naoPassouUmaSemana">Ainda não passaram 7 dias desde o último registo de medidas</string>
+    <string name="periodoTempo">Período de Tempo:</string>
+    <string name="pesoProg">Peso (kg)</string>
+    <string name="gordProg">Gordura corporal (%)</string>
 </resources>
