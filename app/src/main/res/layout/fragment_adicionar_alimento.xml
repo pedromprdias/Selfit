@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="340dp"
-    android:layout_height="600dp"
-    android:background="#C3BABA">
+    android:layout_height="700dp"
+    android:background="#121212">
 
     <TextView
         android:id="@+id/fragmentAdicionarAlimentoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="TextView"
+        android:textColor="#D5CDCD"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,7 +24,14 @@
         android:id="@+id/fragmentAdicionarAlimentoDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/mazzardsoftm_light"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoTipo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -32,6 +42,7 @@
         android:id="@+id/fragmentAdicionarAlimentoImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoDescription"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,7 +54,11 @@
         android:id="@+id/fragmentAdicionarAlimentoTipo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoTable"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -64,89 +79,108 @@
         <TableRow
             android:layout_width="320dp"
             android:layout_height="60dp"
-            android:background="#AFA3A3">
+            android:background="#000000">
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoCaloriasText"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="@string/calorias" />
+                android:text="@string/calorias"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoProteinasText"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="@string/proteinas" />
+                android:text="@string/proteinas"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoHidratosText"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center_horizontal|top"
-                android:text="@string/hidratos" />
+                android:text="@string/hidratos"
+                android:textColor="#FFFFFF" />
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoLipidosText"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="@string/lipidos" />
+                android:text="@string/lipidos"
+                android:textColor="#FFFFFF" />
         </TableRow>
 
         <TableRow
             android:layout_width="320dp"
             android:layout_height="60dp"
-            android:background="#B58F8F">
+            android:background="#FFFFFF">
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoCaloriasValue"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoProteinasValue"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoHidratosValue"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/fragmentAdicionarAlimentoLipidosValue"
                 android:layout_width="80dp"
                 android:layout_height="60dp"
+                android:fontFamily="@font/mazzardsoftm_light"
                 android:gravity="center"
-                android:text="TextView" />
+                android:text="TextView"
+                android:textColor="#000000" />
         </TableRow>
     </TableLayout>
 
     <Button
         android:id="@+id/fragmentAdicionarAlimentoAddBtn"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/adicionar"
+        app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
 
     <Button
         android:id="@+id/fragmentAdicionarAlimentoEditBtn"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/alterar"
         android:visibility="invisible"
+        app:backgroundTint="#000000"
         app:layout_constraintEnd_toStartOf="@+id/fragmentAdicionarAlimentoRmBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -154,10 +188,12 @@
 
     <Button
         android:id="@+id/fragmentAdicionarAlimentoRmBtn"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/remover"
         android:visibility="invisible"
+        app:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fragmentAdicionarAlimentoEditBtn"
@@ -167,6 +203,7 @@
         android:id="@+id/constraintLayout5"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/fragmentAdicionarAlimentoAddBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -177,19 +214,21 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:fontFamily="@font/mazzardsoftm_light"
             android:text="@string/quantidade"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/fragmentAdicionarAlimentoQtdInput"
-            android:layout_width="100dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
             android:background="#FFFFFF"
             android:ems="10"
             android:inputType="numberDecimal"
@@ -203,7 +242,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/mazzardsoftm_light"
             android:text="TextView"
+            android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fragmentAdicionarAlimentoQtdInput"
             app:layout_constraintTop_toTopOf="parent" />

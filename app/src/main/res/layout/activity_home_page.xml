@@ -164,11 +164,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="26dp"
+                        android:layout_marginTop="36dp"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/pequenoAlmoco"
@@ -176,6 +177,8 @@
                         android:textColor="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout4"
@@ -265,19 +268,27 @@
 
                     <Button
                         android:id="@+id/homePequenoAlmocoGuardarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="guardarRefeicao"
                         android:text="@string/guardar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toEndOf="@+id/homePequenoAlmocoAdicionarBtn"
                         app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
 
                     <Button
                         android:id="@+id/homePequenoAlmocoAdicionarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="adicionarAlimento"
                         android:text="@string/adicionar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoRecyclerList" />
 
@@ -291,6 +302,7 @@
                         android:id="@+id/textView5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/almoco"
@@ -318,6 +330,7 @@
                             android:id="@+id/homeAlmocoCalorias"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -331,6 +344,7 @@
                             android:id="@+id/homeAlmocoHidratos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -344,6 +358,7 @@
                             android:id="@+id/homeAlmocoLipidos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -357,6 +372,7 @@
                             android:id="@+id/homeAlmocoProteinas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -381,19 +397,27 @@
 
                     <Button
                         android:id="@+id/homeAlmocoAdicionarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="adicionarAlimento"
                         android:text="@string/adicionar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
 
                     <Button
                         android:id="@+id/homeAlmocoGuardarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="guardarRefeicao"
                         android:text="@string/guardar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toEndOf="@+id/homeAlmocoAdicionarBtn"
                         app:layout_constraintTop_toBottomOf="@+id/homeAlmocoRecyclerList" />
 
@@ -407,6 +431,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/lanche"
@@ -435,17 +460,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toTopOf="@+id/homeLancheHidratos"
                             app:layout_constraintEnd_toStartOf="@+id/homeLancheProteinas"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:fontFamily="@font/mazzardsoftm_light" />
 
                         <TextView
                             android:id="@+id/homeLancheHidratos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/homeLancheLipidos"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -456,7 +487,10 @@
                             android:id="@+id/homeLancheLipidos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -467,7 +501,10 @@
                             android:id="@+id/homeLancheProteinas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toTopOf="@+id/homeLancheLipidos"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -489,19 +526,27 @@
 
                     <Button
                         android:id="@+id/homeLancheAdicionarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="adicionarAlimento"
                         android:text="@string/adicionar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
 
                     <Button
                         android:id="@+id/homeLancheGuardarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="guardarRefeicao"
                         android:text="@string/guardar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toEndOf="@+id/homeLancheAdicionarBtn"
                         app:layout_constraintTop_toBottomOf="@+id/homeLancheRecyclerList" />
 
@@ -515,6 +560,7 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="26dp"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/jantar"
@@ -596,19 +642,27 @@
 
                     <Button
                         android:id="@+id/homeJantarAdicionarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="adicionarAlimento"
                         android:text="@string/adicionar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
 
                     <Button
                         android:id="@+id/homeJantarGuardarBtn"
-                        android:layout_width="120dp"
+                        android:layout_width="130dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="52dp"
+                        android:layout_marginLeft="52dp"
+                        android:fontFamily="@font/mazzardsoftm_light"
                         android:onClick="guardarRefeicao"
                         android:text="@string/guardar"
+                        app:backgroundTint="#000000"
                         app:layout_constraintStart_toEndOf="@+id/homeJantarAdicionarBtn"
                         app:layout_constraintTop_toBottomOf="@+id/homeJantarRecyclerList" />
 
