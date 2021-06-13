@@ -52,6 +52,12 @@ data class MedidaOutput(
         val medida: Medida?
 )
 
+data class ValoresNutricionaisOutput(
+        val error: String?,
+        val msg: String?,
+        val valores: ValoresNutricionais?
+)
+
 data class PostOutput(
         val error: String?,
         val msg: String?,
@@ -84,6 +90,13 @@ data class ExercicioInput(
 )
 
 /*********************************************************/
+
+data class ValoresNutricionais(
+        val calorias: Float,
+        val hidratosCarbono: Float,
+        val proteinas: Float,
+        val lipidos: Float
+)
 
 data class Registo (
         val pequenoAlmoco: Refeicao,

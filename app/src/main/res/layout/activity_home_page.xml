@@ -101,6 +101,30 @@
                     android:textColor="#FFFFFF"
                     android:textSize="30sp" />
 
+                <TextView
+                    android:id="@+id/homeRecCalorias"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/homeRecProteinas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/homeRecHidratos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF" />
+
+                <TextView
+                    android:id="@+id/homeRecLipidos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="84dp">
@@ -197,7 +221,7 @@
                             android:id="@+id/homePequenoAlmocoId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="-1"
                             android:visibility="invisible"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/homePequenoAlmocoCalorias" />
@@ -330,7 +354,7 @@
                             android:id="@+id/homeAlmocoId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="-1"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/homeAlmocoCalorias"
                             app:layout_constraintEnd_toStartOf="@+id/homeAlmocoCalorias" />
@@ -463,7 +487,7 @@
                             android:id="@+id/homeLancheId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="-1"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toTopOf="@+id/homeLancheHidratos"
                             app:layout_constraintEnd_toStartOf="@+id/homeLancheCalorias" />
@@ -596,7 +620,7 @@
                             android:id="@+id/homeJantarId"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="-1"
                             android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/homeJantarCalorias"
                             app:layout_constraintEnd_toStartOf="@+id/homeJantarCalorias" />
@@ -709,7 +733,7 @@
                     android:id="@+id/homeTreinoId"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:text="0"
+                    android:text="-1"
                     android:visibility="invisible" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
