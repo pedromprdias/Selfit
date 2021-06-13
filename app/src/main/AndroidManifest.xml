@@ -15,8 +15,7 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".activities.DetalhesMaquina"></activity>
         <activity android:name=".activities.Progresso" />
-        <activity android:name=".activities.DetalhesTreino" />
-        <activity android:name=".activities.ListaTreinos" />
+        <activity android:name=".activities.ReconhecimentoMaquina" />
         <activity android:name=".activities.DetalhesExercicio" />
         <activity android:name=".activities.DetalhesAlimento" />
         <activity android:name=".activities.ListaAlimentos" />

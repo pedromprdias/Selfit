@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.os.SystemClock
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -112,9 +111,9 @@ class HomePage : AppCompatActivity(),
                     //do nothing (already there)
                 }
                 //when clicking training plans
-                R.id.nav_treinos -> {
+                R.id.nav_reconhecimento -> {
                     //go to training plans activity
-                    val intent = Intent(this@HomePage, ListaTreinos::class.java)
+                    val intent = Intent(this@HomePage, ReconhecimentoMaquina::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -207,17 +206,17 @@ class HomePage : AppCompatActivity(),
             }
             horas < 16 -> {
                 for(i in 1..5){
-                    if(!notifValues[eventos[i]]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                    if(!notifValues[eventos[i-1]]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
             }
             horas < 20 -> {
                 for(i in 2..5){
-                    if(!notifValues[eventos[i]]!!) alarmManager.setExact(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                    if(!notifValues[eventos[i-1]]!!) alarmManager.setExact(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
             }
             horas < 23 -> {
                 for(i in 3..5){
-                    if(!notifValues[eventos[i]]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                    if(!notifValues[eventos[i-1]]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
             }
         }

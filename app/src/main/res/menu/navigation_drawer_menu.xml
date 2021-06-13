@@ -6,9 +6,9 @@
             android:icon="@drawable/ic_launcher_background"
             android:title="@string/mainpage">
         </item>
-        <item android:id="@+id/nav_treinos"
+        <item android:id="@+id/nav_reconhecimento"
             android:icon="@drawable/ic_launcher_background"
-            android:title="@string/treinos">
+            android:title="@string/ReconhecimentoMaquina">
         </item>
         <item android:id="@+id/nav_progresso"
             android:icon="@drawable/ic_launcher_background"

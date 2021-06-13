@@ -61,9 +61,9 @@ class DetalhesExercicio : AppCompatActivity() {
                     finish()
                 }
                 //when clicking training plans
-                R.id.nav_treinos -> {
+                R.id.nav_reconhecimento -> {
                     //go to training plans activity
-                    val intent = Intent(this@DetalhesExercicio, ListaTreinos::class.java)
+                    val intent = Intent(this@DetalhesExercicio, ReconhecimentoMaquina::class.java)
                     startActivity(intent)
                     finish()
                 }

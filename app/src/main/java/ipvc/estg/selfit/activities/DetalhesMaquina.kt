@@ -7,7 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -21,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
 import ipvc.estg.selfit.adapters.ExerciciosMaquinaAdapter
-import ipvc.estg.selfit.adapters.MusculoAdapter
 import ipvc.estg.selfit.api.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -60,9 +58,9 @@ class DetalhesMaquina : AppCompatActivity() {
                     finish()
                 }
                 //when clicking training plans
-                R.id.nav_treinos -> {
+                R.id.nav_reconhecimento -> {
                     //go to training plans activity
-                    val intent = Intent(this@DetalhesMaquina, ListaTreinos::class.java)
+                    val intent = Intent(this@DetalhesMaquina, ReconhecimentoMaquina::class.java)
                     startActivity(intent)
                     finish()
                 }

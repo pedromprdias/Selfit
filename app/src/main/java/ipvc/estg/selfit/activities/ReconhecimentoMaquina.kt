@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import ipvc.estg.selfit.R
 
-class ListaTreinos : AppCompatActivity() {
+class ReconhecimentoMaquina : AppCompatActivity() {
 
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -31,32 +31,32 @@ class ListaTreinos : AppCompatActivity() {
                 //when clicking home page
                 R.id.nav_home -> {
                     //go to home page activity
-                    val intent = Intent(this@ListaTreinos, HomePage::class.java)
+                    val intent = Intent(this@ReconhecimentoMaquina, HomePage::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking training plans
-                R.id.nav_treinos -> {
+                R.id.nav_reconhecimento -> {
                     //do nothing (already there)
                 }
                 //when clicking progress
                 R.id.nav_progresso -> {
                     //go to progress activity
-                    val intent = Intent(this@ListaTreinos, Progresso::class.java)
+                    val intent = Intent(this@ReconhecimentoMaquina, Progresso::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking exercises
                 R.id.nav_exercicios -> {
                     //go to exercises activity
-                    val intent = Intent(this@ListaTreinos, ListaExercicios::class.java)
+                    val intent = Intent(this@ReconhecimentoMaquina, ListaExercicios::class.java)
                     startActivity(intent)
                     finish()
                 }
                 //when clicking food
                 R.id.nav_alimentos -> {
                     //go to food activity
-                    val intent = Intent(this@ListaTreinos, ListaAlimentos::class.java)
+                    val intent = Intent(this@ReconhecimentoMaquina, ListaAlimentos::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -72,7 +72,7 @@ class ListaTreinos : AppCompatActivity() {
                     }
 
                     //go to login activity
-                    val intent = Intent(this@ListaTreinos, MainActivity::class.java)
+                    val intent = Intent(this@ReconhecimentoMaquina, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -86,7 +86,7 @@ class ListaTreinos : AppCompatActivity() {
         drawerLayout = findViewById(R.id.drawerLayoutListaTreinos)
         val toolbar: Toolbar = findViewById(R.id.toolbarListaTreinos)
         setSupportActionBar(toolbar)
-        findViewById<TextView>(R.id.toolbar_title).text = " - Listagem de Treinos"
+        findViewById<TextView>(R.id.toolbar_title).text = " - Máquinas"
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()

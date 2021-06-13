@@ -67,15 +67,15 @@ class Progresso : AppCompatActivity() {
                     finish()
                 }
                 //when clicking training plans
-                R.id.nav_treinos -> {
-                    //do nothing (already there)
+                R.id.nav_reconhecimento -> {
+                    //go to Reconhecimento de Maquina activity
+                    val intent = Intent(this@Progresso, ReconhecimentoMaquina::class.java)
+                    startActivity(intent)
+                    finish()
                 }
                 //when clicking progress
                 R.id.nav_progresso -> {
-                    //go to progress activity
-                    val intent = Intent(this@Progresso, Progresso::class.java)
-                    startActivity(intent)
-                    finish()
+                    //do nothing (already there)
                 }
                 //when clicking exercises
                 R.id.nav_exercicios -> {

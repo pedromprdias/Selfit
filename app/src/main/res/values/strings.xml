@@ -47,7 +47,7 @@
     <string name="lipidos">Lípidos</string>
     <string name="musculosTrabalhados">Músculos trabalhados: </string>
     <string name="melhorPerformance">"Melhor performance: "</string>
-    <string name="maquina">Máquina:</string>
+    <string name="maquina">Máquinas:</string>
     <string name="refeicoes">Refeições</string>
     <string name="treinoDiario">Treino Diário</string>
     <string name="pequenoAlmoco">Pequeno Almoço</string>
@@ -90,4 +90,5 @@
     <string name="pesoProg">Peso (kg)</string>
     <string name="gordProg">Gordura corporal (%)</string>
     <string name="noMeasurements">Não é possível apresentar os valores nutricionais recomedados para este dia por falta de medidas corporais na data</string>
+    <string name="ReconhecimentoMaquina">Máquinas</string>
 </resources>

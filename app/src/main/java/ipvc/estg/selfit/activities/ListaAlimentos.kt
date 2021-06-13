@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
@@ -56,9 +55,9 @@ class ListaAlimentos : AppCompatActivity() {
                     finish()
                 }
                 //when clicking training plans
-                R.id.nav_treinos -> {
+                R.id.nav_reconhecimento -> {
                     //go to training plans activity
-                    val intent = Intent(this@ListaAlimentos, ListaTreinos::class.java)
+                    val intent = Intent(this@ListaAlimentos, ReconhecimentoMaquina::class.java)
                     startActivity(intent)
                     finish()
                 }
