@@ -1,11 +1,13 @@
 package ipvc.estg.selfit.activities
 
-import android.app.DatePickerDialog
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -24,6 +26,7 @@ import ipvc.estg.selfit.adapters.RefeicaoAdapter
 import ipvc.estg.selfit.adapters.TreinoAdapter
 import ipvc.estg.selfit.api.*
 import ipvc.estg.selfit.fragments.*
+import ipvc.estg.selfit.notifications.AlarmReceiver
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,11 +53,18 @@ class HomePage : AppCompatActivity(),
     private lateinit var alimentosRefeicoes: MutableList<MutableList<Alimento>>
     private lateinit var exerciciosTreinoDiario: MutableList<Exercicio>
     private var ultimaMedida: Medida? = null
+    private var notifValues: MutableMap<String, Boolean> = mutableMapOf()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_page)
+
+        notifValues.put("Pequeno Almoço", false)
+        notifValues.put("Almoço", false)
+        notifValues.put("Lanche", false)
+        notifValues.put("Jantar", false)
+        notifValues.put("Treino Diário", false)
 
         alimentosRefeicoes = mutableListOf()
 
@@ -149,10 +159,103 @@ class HomePage : AppCompatActivity(),
             false
         }
 
-        val data: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyy-MM-dd"))
+        val data: String = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
 
         getRegistoDia(data)
         getUltimaMedida()
+        createNotifChannel()
+    }
+
+    override fun onStart() {
+
+        var eventos: MutableList<String> = mutableListOf("Pequeno Almoço", "Almoço", "Lanche", "Jantar", "Treino Diário", "Registos")
+
+        for(i in 1..6) {
+            var intent: Intent = Intent(this, AlarmReceiver::class.java).apply {
+                putExtra("tipoLembrete", eventos[i - 1])
+            }
+            PendingIntent.getBroadcast(this, i, intent, PendingIntent.FLAG_CANCEL_CURRENT).cancel()
+        }
+
+        super.onStart()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onStop() {
+
+        var horas: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH")).toInt() + 1
+        var minutos: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm")).toInt()
+        var segundos: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ss")).toInt()
+
+        var alarmManager: AlarmManager = this.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        var pendingIntents: MutableMap<String, PendingIntent> = mutableMapOf()
+        var eventos: MutableList<String> = mutableListOf("Pequeno Almoço", "Almoço", "Lanche", "Jantar", "Treino Diário", "Registos")
+
+        for(i in 1..6) {
+            var intent: Intent = Intent(this, AlarmReceiver::class.java).apply {
+                putExtra("tipoLembrete", eventos[i - 1])
+            }
+            pendingIntents[eventos[i - 1]] = PendingIntent.getBroadcast(this, i, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        }
+
+        when {
+            horas < 12 -> {
+                eventos.forEach {
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(it, horas, minutos, segundos), pendingIntents.getValue(it))
+                }
+            }
+            horas < 16 -> {
+                for(i in 1..5){
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                }
+            }
+            horas < 20 -> {
+                Log.i("aaa", Calendar.getInstance().timeInMillis.toString())
+                for(i in 2..5){
+                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                }
+            }
+            horas < 23 -> {
+                for(i in 3..5){
+                    alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                }
+            }
+        }
+
+        super.onStop()
+    }
+
+    private fun getMillisToEvent(evento: String, horas: Int, minutos: Int, segundos: Int): Long{
+
+        var difMinutos = 59 - minutos
+        var difSegundos = 60 - segundos
+        var difHoras = 0
+
+        when(evento){
+            "Pequeno Almoço" -> {
+                difHoras = 12 - horas - 1
+            }
+            "Almoço" -> {
+                difHoras = 16 - horas - 1
+            }
+            "Lanche" -> {
+                difHoras = 19 - horas - 1
+            }
+            "Jantar" -> {
+                difHoras = 23 - horas - 1
+            }
+            "Treino Diário" -> {
+                difHoras = 23 - horas - 1
+            }
+            "Registos" -> {
+                difHoras = 23 - horas - 1 + 24
+            }
+        }
+
+        Log.i("nigga", (Calendar.getInstance().timeInMillis + difHoras * 60 * 60 * 1000 + difMinutos * 60 * 1000 + difSegundos * 1000).toString())
+
+        return ((Calendar.getInstance().timeInMillis + difHoras * 60 * 60 * 1000 + difMinutos * 60 * 1000 + difSegundos * 1000))
     }
 
     //change app toolbar on this activity to custom toolbar
@@ -236,7 +339,7 @@ class HomePage : AppCompatActivity(),
 
         var tipo: String = ""
         var idHolder: TextView? = null
-        var id: Int = 0
+        var id: Int = -1
         var data: String = findViewById<TextView>(R.id.homeData).text.toString()
         var alimentos: MutableList<AlimentoInput> = mutableListOf()
 
@@ -244,6 +347,7 @@ class HomePage : AppCompatActivity(),
             findViewById<Button>(R.id.homePequenoAlmocoGuardarBtn) -> {
                 tipo = "Pequeno Almoço"
                 idHolder = findViewById(R.id.homePequenoAlmocoId)
+                Log.i("a", idHolder.text.toString())
                 id = idHolder.text.toString().toInt()
                 alimentosRefeicoes[0].forEach {
                     alimentos.add(AlimentoInput(id = it.id, quantidade = it.quantidade!!))
@@ -276,48 +380,56 @@ class HomePage : AppCompatActivity(),
             else -> ""
         }
 
-        //open shared preferences and get the access token to make a request
-        var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
+        if(alimentos.isNotEmpty()){
+            //open shared preferences and get the access token to make a request
+            var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
 
-        val accessToken: String? = sharedPreferences.getString("accessToken", "")
+            val accessToken: String? = sharedPreferences.getString("accessToken", "")
 
-        val authorization = "Bearer $accessToken"
+            val authorization = "Bearer $accessToken"
 
-        val request = ServiceBuilder.buildService(Endpoints::class.java)
+            val request = ServiceBuilder.buildService(Endpoints::class.java)
 
-        var call: Call<PostOutput>
+            var call: Call<PostOutput>
 
-        if(id == 0) call = request.postRefeicao(authorization, RefeicaoInput(tipo, data, alimentos.toList()))
-        else call = request.putRefeicao(authorization, id, RefeicaoInput(tipo, data, alimentos.toList()))
+            if(id == -1) call = request.postRefeicao(authorization, RefeicaoInput(tipo, data, alimentos.toList()))
+            else call = request.putRefeicao(authorization, id, RefeicaoInput(tipo, data, alimentos.toList()))
 
-        call.enqueue(object : Callback<PostOutput> {
-            override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
-                if(response.isSuccessful) {
-                    if(id == null){
-                        idHolder!!.text = response.body()!!.id.toString()
-                    }
-                    Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
-                } else {
-                    //if the call is not successful, check the error code and warn the user accordingly
-                    when (response.code()){
-                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
-                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
-                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+            call.enqueue(object : Callback<PostOutput> {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
+                    if(response.isSuccessful) {
+                        if(id == null){
+                            idHolder!!.text = response.body()!!.id.toString()
+                        }
+
+                        if(data == LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))){
+                            updateNotifValues()
+                        }
+
+                        Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
+                    } else {
+                        //if the call is not successful, check the error code and warn the user accordingly
+                        when (response.code()){
+                            400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                            401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                            403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-            }
 
-            //if there is a connection error warn the user
-            override fun onFailure(call: Call<PostOutput>, t: Throwable) {
-                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
-            }
-        })
+                //if there is a connection error warn the user
+                override fun onFailure(call: Call<PostOutput>, t: Throwable) {
+                    Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     fun guardarTreino(view: View){
 
         var idHolder: TextView? = null
-        var id: Int = 0
+        var id: Int = -1
         var data: String = findViewById<TextView>(R.id.homeData).text.toString()
         var exercicios: MutableList<ExercicioInput> = mutableListOf()
 
@@ -338,31 +450,38 @@ class HomePage : AppCompatActivity(),
 
         var call: Call<PostOutput>
 
-        if(id == 0) call = request.postTreinoDiario(authorization, TreinoDiarioInput(data, exercicios.toList()))
+        if(id == -1) call = request.postTreinoDiario(authorization, TreinoDiarioInput(data, exercicios.toList()))
         else call = request.putTreinoDiario(authorization, id, TreinoDiarioInput(data, exercicios.toList()))
 
-        call.enqueue(object : Callback<PostOutput> {
-            override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
-                if(response.isSuccessful) {
-                    if(id == null){
-                        idHolder!!.text = response.body()!!.id.toString()
-                    }
-                    Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
-                } else {
-                    //if the call is not successful, check the error code and warn the user accordingly
-                    when (response.code()){
-                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
-                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
-                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+        if(exercicios.isNotEmpty()){
+            call.enqueue(object : Callback<PostOutput> {
+                @RequiresApi(Build.VERSION_CODES.O)
+                override fun onResponse(call: Call<PostOutput>, response: Response<PostOutput>) {
+                    if(response.isSuccessful) {
+                        if(id == null){
+                            idHolder!!.text = response.body()!!.id.toString()
+                        }
+
+                        if(data == LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))){
+                            updateNotifValues()
+                        }
+                        Toast.makeText(this@HomePage, getString(R.string.registoSucesso), Toast.LENGTH_SHORT).show()
+                    } else {
+                        //if the call is not successful, check the error code and warn the user accordingly
+                        when (response.code()){
+                            400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                            401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                            403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
-            }
 
-            //if there is a connection error warn the user
-            override fun onFailure(call: Call<PostOutput>, t: Throwable) {
-                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
-            }
-        })
+                //if there is a connection error warn the user
+                override fun onFailure(call: Call<PostOutput>, t: Throwable) {
+                    Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     override fun onClickAlimento(dialog: DialogFragment, alimento: Int, refeicao: String){
@@ -595,6 +714,7 @@ class HomePage : AppCompatActivity(),
         findViewById<TextView>(R.id.homeTotalLipidos).text = "Lípidos: " + lipidosTotal.toString() + "g"
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun openCalendar(view: View){
 
         val c = Calendar.getInstance()
@@ -609,6 +729,7 @@ class HomePage : AppCompatActivity(),
         dpd.show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun changeDate(year: Int, month: Int, day: Int){
 
         var monthFromatted: String
@@ -628,15 +749,16 @@ class HomePage : AppCompatActivity(),
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getRegistoDia(data: String){
 
         findViewById<TextView>(R.id.homeData).text = data
 
-        findViewById<TextView>(R.id.homePequenoAlmocoId).text = ""
-        findViewById<TextView>(R.id.homeAlmocoId).text = ""
-        findViewById<TextView>(R.id.homeLancheId).text = ""
-        findViewById<TextView>(R.id.homeJantarId).text = ""
-        findViewById<TextView>(R.id.homeTreinoId).text = ""
+        findViewById<TextView>(R.id.homePequenoAlmocoId).text = "-1"
+        findViewById<TextView>(R.id.homeAlmocoId).text = "-1"
+        findViewById<TextView>(R.id.homeLancheId).text = "-1"
+        findViewById<TextView>(R.id.homeJantarId).text = "-1"
+        findViewById<TextView>(R.id.homeTreinoId).text = "-1"
 
         //open shared preferences and get the access token to make a request
         var sharedPreferences: SharedPreferences = getSharedPreferences(getString(R.string.preferencesFile), Context.MODE_PRIVATE)
@@ -692,6 +814,10 @@ class HomePage : AppCompatActivity(),
 
                     adapterTreino.setExercicios(exerciciosTreinoDiario)
 
+                    if(data == LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))){
+                        updateNotifValues()
+                    }
+
                 } else {
                     //if the call is not successful, check the error code, warn the user accordingly and close this activity
                     when (response.code()){
@@ -718,6 +844,39 @@ class HomePage : AppCompatActivity(),
 
             //if there is a connection error warn the user and close this activity
             override fun onFailure(call: Call<RegistoOutput>, t: Throwable) {
+                Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        val call2 = request.getValoresNutricionais(authorization, data)
+
+        call2.enqueue(object : Callback<ValoresNutricionaisOutput> {
+            override fun onResponse(call: Call<ValoresNutricionaisOutput>, response: Response<ValoresNutricionaisOutput>) {
+                if(response.isSuccessful) {
+                    if(response.body()!!.msg != null){
+                        Toast.makeText(this@HomePage, getString(R.string.noMeasurements), Toast.LENGTH_SHORT).show()
+                        findViewById<TextView>(R.id.homeRecCalorias).text = ""
+                        findViewById<TextView>(R.id.homeRecHidratos).text = ""
+                        findViewById<TextView>(R.id.homeRecLipidos).text = ""
+                        findViewById<TextView>(R.id.homeRecProteinas).text = ""
+                    } else {
+                        findViewById<TextView>(R.id.homeRecCalorias).text = "/" + response.body()!!.valores!!.calorias.toString() + "kcal"
+                        findViewById<TextView>(R.id.homeRecHidratos).text = "/" + response.body()!!.valores!!.hidratosCarbono.toString() + "g"
+                        findViewById<TextView>(R.id.homeRecLipidos).text = "/" + response.body()!!.valores!!.lipidos.toString() + "g"
+                        findViewById<TextView>(R.id.homeRecProteinas).text = "/" + response.body()!!.valores!!.proteinas.toString() + "g"
+                    }
+                } else {
+                    //if the call is not successful, check the error code, warn the user accordingly and close this activity
+                    when (response.code()){
+                        400 -> Toast.makeText(this@HomePage, getString(R.string.erro), Toast.LENGTH_SHORT).show()
+                        401 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                        403 -> Toast.makeText(this@HomePage, getString(R.string.invalidToken), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            //if there is a connection error warn the user and close this activity
+            override fun onFailure(call: Call<ValoresNutricionaisOutput>, t: Throwable) {
                 Toast.makeText(this@HomePage, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
             }
         })
@@ -841,5 +1000,31 @@ class HomePage : AppCompatActivity(),
         }
 
         dialog.dismiss()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun updateNotifValues(){
+
+        if(alimentosRefeicoes[0].isNotEmpty()) notifValues.replace("Pequeno Almoço", false, true)
+        if(alimentosRefeicoes[1].isNotEmpty()) notifValues.replace("Almoço", false, true)
+        if(alimentosRefeicoes[2].isNotEmpty()) notifValues.replace("Lanche", false, true)
+        if(alimentosRefeicoes[3].isNotEmpty()) notifValues.replace("Jantar", false, true)
+        if(exerciciosTreinoDiario.isNotEmpty()) notifValues.replace("Treino Diário", false, true)
+    }
+
+    private fun createNotifChannel(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = getString(R.string.app_name)
+            val descriptionText = getString(R.string.app_name)
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("8", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
     }
 }

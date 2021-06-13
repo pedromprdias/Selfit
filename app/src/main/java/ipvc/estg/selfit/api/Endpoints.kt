@@ -107,4 +107,11 @@ interface Endpoints {
     fun getAllMedidas(
         @Header("Authorization") authorization: String
     ): Call<AllMedidasOutput>
+
+    //get recommended nutritional values for the user
+    @GET("valoresNutricionais")
+    fun getValoresNutricionais(
+            @Header("Authorization") authorization: String,
+            @Query("data") data: String
+    ): Call<ValoresNutricionaisOutput>
 }
