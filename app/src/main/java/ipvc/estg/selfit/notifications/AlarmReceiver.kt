@@ -16,7 +16,6 @@ class AlarmReceiver : BroadcastReceiver(){
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
-        Log.i("bbb", Calendar.getInstance().timeInMillis.toString())
         var tipoLembrete: String = intent!!.getStringExtra("tipoLembrete").toString()
 
         val intent = Intent(context, MainActivity::class.java)

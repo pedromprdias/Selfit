@@ -211,7 +211,6 @@ class HomePage : AppCompatActivity(),
                 }
             }
             horas < 20 -> {
-                Log.i("aaa", Calendar.getInstance().timeInMillis.toString())
                 for(i in 2..5){
                     alarmManager.setExact(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
@@ -252,8 +251,6 @@ class HomePage : AppCompatActivity(),
                 difHoras = 23 - horas - 1 + 24
             }
         }
-
-        Log.i("nigga", (Calendar.getInstance().timeInMillis + difHoras * 60 * 60 * 1000 + difMinutos * 60 * 1000 + difSegundos * 1000).toString())
 
         return ((Calendar.getInstance().timeInMillis + difHoras * 60 * 60 * 1000 + difMinutos * 60 * 1000 + difSegundos * 1000))
     }
