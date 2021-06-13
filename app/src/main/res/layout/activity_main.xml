@@ -17,7 +17,7 @@
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/keepLoggedCheckbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -35,7 +35,7 @@
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/inserir_pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -58,8 +58,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="205dp"
-        android:layout_height="205dp"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
         android:layout_marginTop="30dp"
         app:layout_constraintBottom_toTopOf="@+id/inserir_nome"
         app:layout_constraintEnd_toEndOf="parent"

@@ -100,35 +100,39 @@
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="60dp"
-                        android:background="#AFA3A3">
+                        android:background="#000000">
 
                         <TextView
                             android:id="@+id/alimentosDetalhesCaloriasText"
                             android:layout_width="90dp"
                             android:layout_height="60dp"
                             android:gravity="center"
-                            android:text="@string/calorias" />
+                            android:text="@string/calorias"
+                            android:textColor="#FFFFFF" />
 
                         <TextView
                             android:id="@+id/alimentosDetalhesProteinasText"
                             android:layout_width="90dp"
                             android:layout_height="60dp"
                             android:gravity="center"
-                            android:text="@string/proteinas" />
+                            android:text="@string/proteinas"
+                            android:textColor="#FFFFFF" />
 
                         <TextView
                             android:id="@+id/alimentosDetalhesHidratosText"
                             android:layout_width="90dp"
                             android:layout_height="60dp"
                             android:gravity="center_horizontal|top"
-                            android:text="@string/hidratos" />
+                            android:text="@string/hidratos"
+                            android:textColor="#FFFFFF" />
 
                         <TextView
                             android:id="@+id/alimentosDetalhesLipidosText"
                             android:layout_width="90dp"
                             android:layout_height="60dp"
                             android:gravity="center"
-                            android:text="@string/lipidos" />
+                            android:text="@string/lipidos"
+                            android:textColor="#FFFFFF" />
                     </TableRow>
 
                     <TableRow

@@ -12,14 +12,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#F7121212"
+        android:background="#F71E1E1E"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarHome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#121212"
+            android:background="#1E1E1E"
             android:fontFamily="@font/mazzardsoftm_light"
             app:subtitleTextColor="#FFFFFF"
             app:titleTextAppearance="@style/tiago"
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/mazzardsoftm_light"
                 android:text="TextView"
-                android:textColor="#8C8888"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,25 +57,28 @@
 
             <ImageButton
                 android:id="@+id/homeCalendar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
+                android:layout_width="45dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
 
-                android:background="@android:drawable/ic_menu_my_calendar"
+                android:layout_marginBottom="3dp"
+                android:background="#00FFFFFF"
                 android:onClick="openCalendar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:src="@drawable/ic_baseline_edit_calendar_24"
+                android:tint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <ImageButton
                 android:id="@+id/homeMeasurements"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="#00FFFFFF"
                 android:onClick="clickPedirMedidas"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/alert_light_frame" />
+                app:srcCompat="@drawable/ic_baseline_list_alt_24" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -167,18 +170,20 @@
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="2000dp"
+                        android:layout_height="35dp"
                         android:layout_marginTop="36dp"
+                        android:background="#000000"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/pequenoAlmoco"
+                        android:gravity="center_vertical"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                >
+                    >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/constraintLayout4"
@@ -259,6 +264,7 @@
                         android:id="@+id/homePequenoAlmocoRecyclerList"
                         android:layout_width="380dp"
                         android:layout_height="140dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -300,12 +306,14 @@
 
                     <TextView
                         android:id="@+id/textView5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="2000dp"
+                        android:layout_height="35dp"
                         android:layout_marginTop="26dp"
+                        android:background="#000000"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/almoco"
+                        android:gravity="center_vertical"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
@@ -315,6 +323,7 @@
                         android:id="@+id/constraintLayout6"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginTop="14dp"
                         app:layout_constraintTop_toBottomOf="@+id/textView5">
 
                         <TextView
@@ -388,6 +397,7 @@
                         android:id="@+id/homeAlmocoRecyclerList"
                         android:layout_width="380dp"
                         android:layout_height="140dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -429,12 +439,14 @@
 
                     <TextView
                         android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="2000dp"
+                        android:layout_height="35dp"
                         android:layout_marginTop="26dp"
+                        android:background="#000000"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/lanche"
+                        android:gravity="center_vertical"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
@@ -444,6 +456,7 @@
                         android:id="@+id/constraintLayout7"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginTop="14dp"
                         app:layout_constraintTop_toBottomOf="@+id/textView6">
 
                         <TextView
@@ -459,6 +472,7 @@
                             android:id="@+id/homeLancheCalorias"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
                             android:textAppearance="@style/textoInformacaoAlimentoEsp"
                             android:textColor="#FFFFFF"
@@ -466,8 +480,7 @@
                             app:layout_constraintEnd_toStartOf="@+id/homeLancheProteinas"
                             app:layout_constraintHorizontal_bias="0.5"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:fontFamily="@font/mazzardsoftm_light" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/homeLancheHidratos"
@@ -517,6 +530,7 @@
                         android:id="@+id/homeLancheRecyclerList"
                         android:layout_width="380dp"
                         android:layout_height="140dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -558,12 +572,14 @@
 
                     <TextView
                         android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="2000dp"
+                        android:layout_height="35dp"
                         android:layout_marginTop="26dp"
+                        android:background="#000000"
                         android:fontFamily="@font/mazzardsoftm_light"
                         android:paddingLeft="10dp"
                         android:text="@string/jantar"
+                        android:gravity="center_vertical"
                         android:textAppearance="@style/textoInformacaoAlimento"
                         android:textColor="#FFFFFF"
                         app:layout_constraintStart_toStartOf="parent"
@@ -573,6 +589,7 @@
                         android:id="@+id/constraintLayout8"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
+                        android:layout_marginTop="14dp"
                         app:layout_constraintTop_toBottomOf="@+id/textView7">
 
                         <TextView
@@ -588,7 +605,10 @@
                             android:id="@+id/homeJantarCalorias"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toTopOf="@+id/homeJantarHidratos"
                             app:layout_constraintEnd_toStartOf="@+id/homeJantarProteinas"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -599,7 +619,10 @@
                             android:id="@+id/homeJantarHidratos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/homeJantarLipidos"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -610,7 +633,10 @@
                             android:id="@+id/homeJantarLipidos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -621,7 +647,10 @@
                             android:id="@+id/homeJantarProteinas"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/mazzardsoftm_light"
                             android:text="TextView"
+                            android:textAppearance="@style/textoInformacaoAlimentoEsp"
+                            android:textColor="#FFFFFF"
                             app:layout_constraintBottom_toTopOf="@+id/homeJantarLipidos"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.5"
@@ -633,6 +662,7 @@
                         android:id="@+id/homeJantarRecyclerList"
                         android:layout_width="380dp"
                         android:layout_height="140dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
