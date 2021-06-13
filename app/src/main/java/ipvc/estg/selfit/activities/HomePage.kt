@@ -202,22 +202,22 @@ class HomePage : AppCompatActivity(),
         when {
             horas < 12 -> {
                 eventos.forEach {
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(it, horas, minutos, segundos), pendingIntents.getValue(it))
+                    if(!notifValues[it]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(it, horas, minutos, segundos), pendingIntents.getValue(it))
                 }
             }
             horas < 16 -> {
                 for(i in 1..5){
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                    if(!notifValues[eventos[i]]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
             }
             horas < 20 -> {
                 for(i in 2..5){
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                    if(!notifValues[eventos[i]]!!) alarmManager.setExact(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
             }
             horas < 23 -> {
                 for(i in 3..5){
-                    alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
+                    if(!notifValues[eventos[i]]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(eventos[i], horas, minutos, segundos), pendingIntents.getValue(eventos[i]))
                 }
             }
         }
