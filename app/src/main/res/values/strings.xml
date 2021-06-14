@@ -39,6 +39,8 @@
     <string name="exercicios">Exercícios</string>
     <string name="alimentos">Alimentos</string>
     <string name="treinos">Treinos</string>
+    <string name="medidaMaisRecente">Quantidades para manter peso</string>
+    <string name="quantConsum">Quantidade já consumida</string>
     <string name="mainpage">Página Principal</string>
     <string name="nome">"Nome: "</string>
     <string name="calorias">Calorias</string>

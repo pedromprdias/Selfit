@@ -29,6 +29,7 @@ import ipvc.estg.selfit.notifications.AlarmReceiver
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.RoundingMode
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -679,35 +680,35 @@ class HomePage : AppCompatActivity(),
 
         when(index){
             0 -> {
-                findViewById<TextView>(R.id.homePequenoAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
-                findViewById<TextView>(R.id.homePequenoAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homePequenoAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homePequenoAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homePequenoAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "kcal"
+                findViewById<TextView>(R.id.homePequenoAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homePequenoAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homePequenoAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
             }
             1 -> {
-                findViewById<TextView>(R.id.homeAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
-                findViewById<TextView>(R.id.homeAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homeAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homeAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "kcal"
+                findViewById<TextView>(R.id.homeAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homeAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homeAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
             }
             2 -> {
-                findViewById<TextView>(R.id.homeLancheCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
-                findViewById<TextView>(R.id.homeLancheHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homeLancheProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homeLancheLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeLancheCalorias).text = "Calorias: " + caloriasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "kcal"
+                findViewById<TextView>(R.id.homeLancheHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homeLancheProteinas).text = "Proteínas: " + proteinasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homeLancheLipidos).text = "Lípidos: " + lipidosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
             }
             3 -> {
-                findViewById<TextView>(R.id.homeJantarCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
-                findViewById<TextView>(R.id.homeJantarHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homeJantarProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
-                findViewById<TextView>(R.id.homeJantarLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homeJantarCalorias).text = "Calorias: " + caloriasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "kcal"
+                findViewById<TextView>(R.id.homeJantarHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homeJantarProteinas).text = "Proteínas: " + proteinasRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+                findViewById<TextView>(R.id.homeJantarLipidos).text = "Lípidos: " + lipidosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
             }
         }
 
-        findViewById<TextView>(R.id.homeTotalCalorias).text = "Calorias: " + caloriasTotal.toString() + "kcal"
-        findViewById<TextView>(R.id.homeTotalHidratos).text = "Hidratos de carbono: " + hidratosTotal.toString() + "g"
-        findViewById<TextView>(R.id.homeTotalProteinas).text = "Proteínas: " + proteinasTotal.toString() + "g"
-        findViewById<TextView>(R.id.homeTotalLipidos).text = "Lípidos: " + lipidosTotal.toString() + "g"
+        findViewById<TextView>(R.id.homeTotalCalorias).text = "Calorias: " + caloriasTotal.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "kcal"
+        findViewById<TextView>(R.id.homeTotalHidratos).text = "Hidratos de carbono: " + hidratosTotal.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+        findViewById<TextView>(R.id.homeTotalProteinas).text = "Proteínas: " + proteinasTotal.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
+        findViewById<TextView>(R.id.homeTotalLipidos).text = "Lípidos: " + lipidosTotal.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
