@@ -29,6 +29,7 @@ import ipvc.estg.selfit.notifications.AlarmReceiver
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.math.RoundingMode
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -680,7 +681,7 @@ class HomePage : AppCompatActivity(),
         when(index){
             0 -> {
                 findViewById<TextView>(R.id.homePequenoAlmocoCalorias).text = "Calorias: " + caloriasRefeicao.toString() + "kcal"
-                findViewById<TextView>(R.id.homePequenoAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toString() + "g"
+                findViewById<TextView>(R.id.homePequenoAlmocoHidratos).text = "Hidratos de carbono: " + hidratosRefeicao.toBigDecimal().setScale(2, RoundingMode.HALF_EVEN).toString() + "g"
                 findViewById<TextView>(R.id.homePequenoAlmocoProteinas).text = "Proteínas: " + proteinasRefeicao.toString() + "g"
                 findViewById<TextView>(R.id.homePequenoAlmocoLipidos).text = "Lípidos: " + lipidosRefeicao.toString() + "g"
             }

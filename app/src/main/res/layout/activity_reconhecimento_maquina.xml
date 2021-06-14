@@ -2,9 +2,10 @@
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerLayoutListaTreinos"
+    android:id="@+id/drawerLayoutReconhecimentoMaquina"
     android:fitsSystemWindows="true"
     android:background="#F7FFFFFF"
     android:minWidth="19dp">
@@ -21,12 +22,12 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarListaTreinos"
+                android:id="@+id/toolbarReconhecimentoMaquina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#0000FF"
                 app:subtitleTextColor="#0A0A0A"
-                app:titleTextColor="#111111" >
+                app:titleTextColor="#111111">
 
                 <TextView
                     android:id="@+id/toolbar_title"
@@ -36,6 +37,38 @@
                     android:textColor="#000000"
                     android:textSize="20sp" />
             </androidx.appcompat.widget.Toolbar>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="675dp"
+                android:background="#CD6262">
+
+                <ImageView
+                    android:id="@+id/imagemParaModelo"
+                    android:layout_width="220dp"
+                    android:layout_height="231dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.104"
+                    tools:srcCompat="@tools:sample/avatars" />
+
+                <ImageButton
+                    android:id="@+id/selectIMG"
+                    android:layout_width="231dp"
+                    android:layout_height="229dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.51"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.383"
+                    app:srcCompat="@drawable/ic_baseline_search_24"
+                    tools:ignore="VectorDrawableCompat" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
