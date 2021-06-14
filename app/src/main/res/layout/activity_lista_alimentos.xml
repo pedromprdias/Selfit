@@ -12,8 +12,8 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:background="#F7FFFFFF"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#1E1E1E">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,47 +25,60 @@
                 android:id="@+id/toolbarListaAlimentos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#0000FF"
-                app:subtitleTextColor="#0A0A0A"
-                app:titleTextColor="#111111" >
+                android:background="#1E1E1E"
+                app:subtitleTextColor="#FFFFFF"
+                android:fontFamily="@font/mazzardsoftm_light"
+                app:titleTextAppearance="@style/tiago"
+                app:titleTextColor="#FFFFFF">
 
                 <TextView
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
-                    android:textColor="#000000"
+                    android:fontFamily="@font/mazzardsoftm_light"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp" />
             </androidx.appcompat.widget.Toolbar>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="#4CAF50">
+                android:background="#FFFFFF">
 
                 <EditText
                     android:id="@+id/listaAlimentosNomeSearch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="280dp"
+                    android:layout_height="38dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:background="#000000"
                     android:ems="10"
+                    android:fontFamily="@font/mazzardsoftm_light"
                     android:inputType="textPersonName"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/listaAlimentosSearchBtn"
-                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.547" />
 
                 <ImageButton
                     android:id="@+id/listaAlimentosSearchBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="48dp"
+                    android:layout_marginRight="48dp"
+                    android:background="#00FFFFFF"
                     android:onClick="filterAlimentos"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/listaAlimentosNomeSearch"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@android:drawable/ic_menu_search" />
+                    app:layout_constraintVertical_bias="0.525"
+                    app:srcCompat="@drawable/ic_baseline_search_24" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -74,6 +87,7 @@
                 android:id="@+id/alimentosListRecycler"
                 android:layout_width="match_parent"
                 android:layout_height="500dp"
+                android:background="#1E1E1E"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

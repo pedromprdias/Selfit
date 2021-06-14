@@ -24,9 +24,11 @@
                 android:id="@+id/toolbarDetalhesTreino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#0000FF"
-                app:subtitleTextColor="#0A0A0A"
-                app:titleTextColor="#111111" >
+                android:background="#1E1E1E"
+                app:subtitleTextColor="#FFFFFF"
+                app:titleTextAppearance="@style/tiago"
+                android:fontFamily="@font/mazzardsoftm_light"
+                app:titleTextColor="#FFFFFF">
 
                 <TextView
                     android:id="@+id/toolbar_title"
@@ -34,7 +36,9 @@
                     android:layout_height="wrap_content"
                     android:text=""
                     android:textColor="#000000"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:fontFamily="@font/mazzardsoftm_light"
+                    app:titleTextAppearance="@style/tiago" />
             </androidx.appcompat.widget.Toolbar>
         </LinearLayout>
     </ScrollView>
