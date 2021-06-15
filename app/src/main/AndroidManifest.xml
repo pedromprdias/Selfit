@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Selfit"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.DetalhesMaquina"></activity>
+        <activity android:name=".activities.DetalhesMaquina" />
         <activity android:name=".activities.Progresso" />
         <activity android:name=".activities.ReconhecimentoMaquina" />
         <activity android:name=".activities.DetalhesExercicio" />
