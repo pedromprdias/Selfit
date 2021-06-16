@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:text="@string/altura"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginLeft="84dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="28dp"
         android:text="@string/peso"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,11 +34,13 @@
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="32dp"
         android:text="@string/pesoMeta"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:layout_editor_absoluteX="53dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView15"
@@ -58,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginLeft="44dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="32dp"
         android:text="@string/metaGordura"
         android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasMetaGorduraValue" />
 
     <Button
         android:id="@+id/fragmentPedirMedidasGuardarBtn"
@@ -113,61 +115,71 @@
         android:id="@+id/fragmentPedirMedidasAlturaValue"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="51dp"
+        android:layout_marginLeft="51dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
         android:nextFocusForward="@id/fragmentPedirMedidasPesoValue"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/fragmentPedirMedidasPesoValue"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:nextFocusForward="@id/fragmentPedirMedidasMetaPesoValue"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasAlturaValue"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasAlturaValue" />
 
     <EditText
         android:id="@+id/fragmentPedirMedidasMetaPesoValue"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:nextFocusForward="@id/fragmentPedirMedidasGorduraValue"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasPesoValue"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView14"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasPesoValue" />
 
     <EditText
         android:id="@+id/fragmentPedirMedidasGorduraValue"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:nextFocusForward="@id/fragmentPedirMedidasMetaGorduraValue"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasMetaPesoValue"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasMetaPesoValue" />
 
     <EditText
         android:id="@+id/fragmentPedirMedidasMetaGorduraValue"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:nextFocusForward="@id/fragmentPedirMedidasCheckbox"
         android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasGorduraValue"
-        tools:layout_editor_absoluteX="172dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/fragmentPedirMedidasGorduraValue" />
 
     <CheckBox
         android:id="@+id/fragmentPedirMedidasCheckbox"
@@ -177,6 +189,7 @@
         android:nextFocusForward="@id/fragmentPedirMedidasGuardarBtn"
         android:text="@string/naoPedirMedidas"
         android:textColor="#FFFFFF"
+        app:buttonTint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/fragmentPedirMedidasGuardarBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

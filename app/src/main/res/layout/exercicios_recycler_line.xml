@@ -5,27 +5,31 @@
     android:id="@+id/exerciciosRecyclerLine"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:background="#1E1E1E"
     android:onClick="moveToExercicioDetails">
 
     <ImageView
         android:id="@+id/exerciciosRecyclerImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/exerciciosRecyclerNome"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/exerciciosRecyclerNome"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/exercicios"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/exerciciosRecyclerImage"
         app:layout_constraintTop_toTopOf="parent" />
 

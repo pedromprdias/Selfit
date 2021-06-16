@@ -133,7 +133,7 @@ class DetalhesExercicio : AppCompatActivity() {
                     findViewById<ImageView>(R.id.exercicioDetalhesImage).setImageBitmap(bitmap)
 
                     findViewById<TextView>(R.id.exercicioDetalhesMaxPeso).text = "Peso máximo: " + response.body()!!.exercicio!!.maxPeso.toString() + "kg"
-                    findViewById<TextView>(R.id.exercicioDetalhesOverallValues).text = "Peso: " + response.body()!!.exercicio!!.maxOverall!!.peso.toString() + "kg\nRepetições: " + response.body()!!.exercicio!!.maxOverall!!.repeticoes.toString() + "\nSéries: " + response.body()!!.exercicio!!.maxOverall!!.series
+
                     findViewById<TextView>(R.id.exercicioDetalhesMaquinaName).text = response.body()!!.exercicio!!.maquina!!.nome
                     findViewById<TextView>(R.id.exercicioDetalhesMaquinaId).text = response.body()!!.exercicio!!.maquina!!.id.toString()
 
@@ -143,10 +143,10 @@ class DetalhesExercicio : AppCompatActivity() {
 
                     if(response.body()!!.exercicio!!.dataMaxPeso != ""){
                         findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).text = "No dia:   " + response.body()!!.exercicio!!.dataMaxPeso!!.dropLast(14)
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).text = "No dia:    " + response.body()!!.exercicio!!.dataMaxOverall!!.dropLast(14)
+
                     } else {
                         findViewById<TextView>(R.id.exercicioDetalhesMaxPesoData).visibility = View.INVISIBLE
-                        findViewById<TextView>(R.id.exercicioDetalhesMaxOverallData).visibility = View.INVISIBLE
+
                     }
 
                     listaMusculos = response.body()!!.exercicio!!.musculos!!

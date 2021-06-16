@@ -827,22 +827,6 @@
                         app:layout_constraintStart_toEndOf="@+id/homeTreinoAdicionarBtn"
                         app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
 
-                    <Button
-                        android:id="@+id/homeTreinoCarregarBtn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="85dp"
-                        android:layout_marginEnd="130dp"
-                        android:layout_marginRight="130dp"
-                        android:layout_marginBottom="10dp"
-                        android:fontFamily="@font/mazzardsoftm_light"
-                        android:text="@string/carregarTreino"
-                        app:backgroundTint="#000000"
-                        app:iconTint="#FFFFFF"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/homeTreinoRecyclerList" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="340dp"
-    android:layout_height="600dp">
+    android:layout_width="415dp"
+    android:layout_height="845dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#FFFFFF"
+        android:background="#837B7B"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="-92dp">
 
@@ -22,8 +22,10 @@
             android:background="#000000"
             android:ems="10"
             android:fontFamily="@font/mazzardsoftm_light"
+            android:hint="Alimento..."
             android:inputType="textPersonName"
             android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fragmentListaExerciciosSearchBtn"
             app:layout_constraintHorizontal_bias="0.5"
@@ -52,7 +54,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragmentListaExerciciosRecycler"
         android:layout_width="match_parent"
-        android:layout_height="520dp"
+        android:layout_height="765dp"
         android:background="#1E1E1E"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 

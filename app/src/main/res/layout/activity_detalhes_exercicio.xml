@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawerLayoutDetalhesExercicio"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawerLayoutDetalhesExercicio"
-    android:fitsSystemWindows="true"
     android:background="#F7FFFFFF"
+    android:fitsSystemWindows="true"
     android:minWidth="19dp">
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:background="#F7FFFFFF"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#F7FFFFFF">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,11 +43,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="750dp">
+                android:layout_height="750dp"
+                android:background="#1E1E1E">
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -57,12 +57,12 @@
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="#1E1E1E">
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/maquinaDetalhesExerciciosRecycler"
-                                android:layout_width="380dp"
+                                android:layout_width="370dp"
                                 android:layout_height="120dp"
                                 android:layout_marginTop="10dp"
                                 app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -73,9 +73,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:background="#FFFFFF"
                                 android:fontFamily="@font/mazzardsoftm_light"
                                 android:text="TextView"
-                                android:textColor="#FFFFFF"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
                                 app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesMaxPeso"
                                 app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesMaxPeso" />
 
@@ -83,23 +85,13 @@
                                 android:id="@+id/exercicioDetalhesMaquinaText"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
+                                android:layout_marginTop="10dp"
                                 android:fontFamily="@font/mazzardsoftm_light"
                                 android:text="@string/maquina"
                                 android:textColor="#FFFFFF"
-                                app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesMaxOverallData"
-                                app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesMaxOverallData" />
-
-                            <TextView
-                                android:id="@+id/exercicioDetalhesMaxOverallData"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="@font/mazzardsoftm_light"
-                                android:text="TextView"
-                                android:textColor="#FFFFFF"
-                                app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesOverallValues"
-                                app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesOverallValues" />
+                                android:textSize="22sp"
+                                app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesMaxPesoData"
+                                app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesMaxPesoData" />
 
                             <ImageView
                                 android:id="@+id/exercicioDetalhesImage"
@@ -122,6 +114,8 @@
                                     android:id="@+id/exercicioDetalhesMaquinaImage"
                                     android:layout_width="90dp"
                                     android:layout_height="90dp"
+                                    android:layout_marginBottom="10dp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent"
                                     tools:srcCompat="@tools:sample/avatars" />
@@ -129,13 +123,14 @@
                                 <TextView
                                     android:id="@+id/exercicioDetalhesMaquinaName"
                                     android:layout_width="90dp"
-                                    android:layout_height="60dp"
+                                    android:layout_height="wrap_content"
                                     android:layout_marginStart="10dp"
                                     android:layout_marginLeft="10dp"
                                     android:layout_marginTop="10dp"
                                     android:fontFamily="@font/mazzardsoftm_light"
                                     android:text="TextView"
                                     android:textColor="#FFFFFF"
+                                    android:textSize="18sp"
                                     app:layout_constraintStart_toEndOf="@+id/exercicioDetalhesMaquinaImage"
                                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -154,44 +149,25 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="15dp"
+                                android:background="#FFFFFF"
                                 android:fontFamily="@font/mazzardsoftm_light"
                                 android:text="TextView"
-                                android:textColor="#FFFFFF"
+                                android:textColor="#000000"
+                                android:textSize="20sp"
                                 app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesDescription"
                                 app:layout_constraintTop_toBottomOf="@+id/maquinaDetalhesExerciciosRecycler" />
-
-                            <TextView
-                                android:id="@+id/exercicioDetalhesMaxOverall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="@font/mazzardsoftm_light"
-                                android:text="@string/melhorPerformance"
-                                android:textColor="#FFFFFF"
-                                app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesMaxPesoData"
-                                app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesMaxPesoData" />
-
-                            <TextView
-                                android:id="@+id/exercicioDetalhesOverallValues"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="15dp"
-                                android:fontFamily="@font/mazzardsoftm_light"
-                                android:text="TextView"
-                                android:textColor="#FFFFFF"
-                                app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesMaxOverall"
-                                app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesMaxOverall" />
 
                             <TextView
                                 android:id="@+id/exercicioDetalhesName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginLeft="30dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_marginTop="15dp"
                                 android:fontFamily="@font/mazzardsoftm_light"
                                 android:text="TextView"
                                 android:textColor="#FFFFFF"
+                                android:textSize="30sp"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -203,6 +179,7 @@
                                 android:fontFamily="@font/mazzardsoftm_light"
                                 android:text="TextView"
                                 android:textColor="#FFFFFF"
+                                android:textSize="20sp"
                                 app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesImage"
                                 app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesImage" />
 
@@ -214,6 +191,7 @@
                                 android:fontFamily="@font/mazzardsoftm_light"
                                 android:text="@string/musculosTrabalhados"
                                 android:textColor="#FFFFFF"
+                                android:textSize="20sp"
                                 app:layout_constraintStart_toStartOf="@+id/exercicioDetalhesDescription"
                                 app:layout_constraintTop_toBottomOf="@+id/exercicioDetalhesDescription" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -231,6 +209,5 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/navigation_drawer_header"
-        app:menu="@menu/navigation_drawer_menu">
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/navigation_drawer_menu"></com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

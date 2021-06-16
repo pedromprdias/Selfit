@@ -42,6 +42,7 @@
     <string name="medidaMaisRecente">Quantidades para manter peso</string>
     <string name="quantConsum">Quantidade já consumida</string>
     <string name="mainpage">Página Principal</string>
+    <string name="recMaq">Insira a imagem para a aplicação identificar qual é a máquina.</string>
     <string name="nome">"Nome: "</string>
     <string name="calorias">Calorias</string>
     <string name="proteinas">Proteinas</string>
