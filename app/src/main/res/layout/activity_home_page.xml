@@ -80,7 +80,8 @@
                 android:onClick="clickPedirMedidas"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_baseline_list_alt_24" />
+                app:srcCompat="@drawable/ic_baseline_list_alt_24"
+                tools:ignore="VectorDrawableCompat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,31 +119,26 @@
 
                 <TextView
                     android:id="@+id/homeRecCalorias"
-                    android:layout_width="212dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/mazzardsoftm_light"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/homeRecProteinas"
-                    android:layout_width="212dp"
+                    android:id="@+id/homeRecPeso"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/mazzardsoftm_light"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/homeRecHidratos"
-                    android:layout_width="212dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mazzardsoftm_light"
-                    android:textColor="#FFFFFF" />
-
-                <TextView
-                    android:id="@+id/homeRecLipidos"
-                    android:layout_width="212dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/mazzardsoftm_light"
-                    android:textColor="#FFFFFF" />
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/consumidoDiario"
@@ -317,9 +313,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/homePequenoAlmocoRecyclerList"
-                        android:layout_width="380dp"
-                        android:layout_height="140dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
                         android:layout_marginTop="8dp"
+                        android:background="#505050"
                         android:clipChildren="false"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
@@ -453,9 +450,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/homeAlmocoRecyclerList"
-                        android:layout_width="380dp"
-                        android:layout_height="140dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
                         android:layout_marginTop="8dp"
+                        android:background="#505050"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -588,9 +586,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/homeLancheRecyclerList"
-                        android:layout_width="380dp"
-                        android:layout_height="140dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
                         android:layout_marginTop="8dp"
+                        android:background="#505050"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -722,9 +721,10 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/homeJantarRecyclerList"
-                        android:layout_width="380dp"
-                        android:layout_height="140dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
                         android:layout_marginTop="8dp"
+                        android:background="#505050"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"

@@ -2,30 +2,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single"
         android:id="@+id/group1">
-        <item android:id="@+id/nav_home"
+        <item
+            android:id="@+id/nav_home"
             android:fontFamily="@font/mazzardsoftm_light"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/mainpage">
-        </item>
-        <item android:id="@+id/nav_reconhecimento"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/ReconhecimentoMaquina">
-        </item>
-        <item android:id="@+id/nav_progresso"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/progresso">
-        </item>
-        <item android:id="@+id/nav_exercicios"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/exercicios">
-        </item>
-        <item android:id="@+id/nav_alimentos"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/alimentos">
-        </item>
-        <item android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_launcher_background"
-            android:title="@string/logout">
-        </item>
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/mainpage"></item>
+        <item
+            android:id="@+id/nav_reconhecimento"
+            android:icon="@drawable/ic_baseline_flip_camera_ios_24"
+            android:title="@string/ReconhecimentoMaquina"></item>
+        <item
+            android:id="@+id/nav_progresso"
+            android:icon="@drawable/ic_baseline_insert_chart_outlined_24"
+            android:title="@string/progresso"></item>
+        <item
+            android:id="@+id/nav_exercicios"
+            android:icon="@drawable/ic_baseline_fitness_center_24"
+            android:title="@string/exercicios"></item>
+        <item
+            android:id="@+id/nav_alimentos"
+            android:icon="@drawable/ic_baseline_fastfood_24"
+            android:title="@string/alimentos"></item>
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_logout_24"
+            android:title="@string/logout"></item>
     </group>
 </menu>

@@ -65,6 +65,7 @@ class HomePage : AppCompatActivity(),
         notifValues.put("Lanche", false)
         notifValues.put("Jantar", false)
         notifValues.put("Treino Diário", false)
+        notifValues.put("Registos", false)
 
         alimentosRefeicoes = mutableListOf()
 
@@ -182,7 +183,7 @@ class HomePage : AppCompatActivity(),
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStop() {
-
+    Log.i("hahaxd", "1")
         var horas: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH")).toInt() + 1
         var minutos: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm")).toInt()
         var segundos: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ss")).toInt()
@@ -191,8 +192,9 @@ class HomePage : AppCompatActivity(),
 
         var pendingIntents: MutableMap<String, PendingIntent> = mutableMapOf()
         var eventos: MutableList<String> = mutableListOf("Pequeno Almoço", "Almoço", "Lanche", "Jantar", "Treino Diário", "Registos")
-
+        Log.i("hahaxd", "2")
         for(i in 1..6) {
+
             var intent: Intent = Intent(this, AlarmReceiver::class.java).apply {
                 putExtra("tipoLembrete", eventos[i - 1])
             }
@@ -202,6 +204,7 @@ class HomePage : AppCompatActivity(),
         when {
             horas < 12 -> {
                 eventos.forEach {
+                    Log.i("sus", notifValues[it].toString())
                     if(!notifValues[it]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(it, horas, minutos, segundos), pendingIntents.getValue(it))
                 }
             }
@@ -239,7 +242,7 @@ class HomePage : AppCompatActivity(),
                 difHoras = 16 - horas - 1
             }
             "Lanche" -> {
-                difHoras = 19 - horas - 1
+                difHoras = 20 - horas - 1
             }
             "Jantar" -> {
                 difHoras = 23 - horas - 1
@@ -853,14 +856,10 @@ class HomePage : AppCompatActivity(),
                     if(response.body()!!.msg != null){
                         Toast.makeText(this@HomePage, getString(R.string.noMeasurements), Toast.LENGTH_SHORT).show()
                         findViewById<TextView>(R.id.homeRecCalorias).text = ""
-                        findViewById<TextView>(R.id.homeRecHidratos).text = ""
-                        findViewById<TextView>(R.id.homeRecLipidos).text = ""
-                        findViewById<TextView>(R.id.homeRecProteinas).text = ""
+                        findViewById<TextView>(R.id.homeRecPeso).text = ""
                     } else {
-                        findViewById<TextView>(R.id.homeRecCalorias).text = "/" + response.body()!!.valores!!.calorias.toString() + "kcal"
-                        findViewById<TextView>(R.id.homeRecHidratos).text = "/" + response.body()!!.valores!!.hidratosCarbono.toString() + "g"
-                        findViewById<TextView>(R.id.homeRecLipidos).text = "/" + response.body()!!.valores!!.lipidos.toString() + "g"
-                        findViewById<TextView>(R.id.homeRecProteinas).text = "/" + response.body()!!.valores!!.proteinas.toString() + "g"
+                        findViewById<TextView>(R.id.homeRecCalorias).text = "Calorias recomendadas: " + response.body()!!.valores!!.calorias.toString() + "kcal"
+                        findViewById<TextView>(R.id.homeRecPeso).text = "Peso corporal: " + response.body()!!.valores!!.peso.toString() + "kg"
                     }
                 } else {
                     //if the call is not successful, check the error code, warn the user accordingly and close this activity

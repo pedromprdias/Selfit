@@ -203,6 +203,7 @@ class Progresso : AppCompatActivity() {
         lineDataSetPeso.lineWidth = 3f
         lineDataSetPeso.valueTextSize = 12f
         lineDataSetPeso.circleRadius = 8f
+        lineDataSetPeso.valueTextColor = Color.WHITE
         lineDataSetPeso.circleHoleRadius = 4f
         val lineDataSetPesoMeta = LineDataSet(listaPesoMetaChart, "Meta de Peso (kg)")
         lineDataSetPesoMeta.color = Color.GREEN
@@ -210,6 +211,7 @@ class Progresso : AppCompatActivity() {
         lineDataSetPesoMeta.valueTextSize = 12f
         lineDataSetPesoMeta.valueTextSize = 12f
         lineDataSetPesoMeta.circleRadius = 8f
+        lineDataSetPesoMeta.valueTextColor = Color.WHITE
         lineDataSetPesoMeta.circleHoleRadius = 4f
         val lineDataSetGordura = LineDataSet(listaGorduraChart, "Gordura Corporal (%)")
         lineDataSetGordura.color = Color.YELLOW
@@ -217,12 +219,14 @@ class Progresso : AppCompatActivity() {
         lineDataSetGordura.valueTextSize = 12f
         lineDataSetGordura.valueTextSize = 12f
         lineDataSetGordura.circleRadius = 8f
+        lineDataSetGordura.valueTextColor = Color.WHITE
         lineDataSetGordura.circleHoleRadius = 4f
         val lineDataSetGorduraMeta = LineDataSet(listaGorduraMetaChart, "Meta de Gordura (%)")
         lineDataSetGorduraMeta.color = Color.GREEN
         lineDataSetGorduraMeta.lineWidth = 3f
         lineDataSetGorduraMeta.valueTextSize = 12f
         lineDataSetGorduraMeta.valueTextSize = 12f
+        lineDataSetGorduraMeta.valueTextColor = Color.WHITE
         lineDataSetGorduraMeta.circleRadius = 8f
         lineDataSetGorduraMeta.circleHoleRadius = 4f
 
@@ -251,6 +255,9 @@ class Progresso : AppCompatActivity() {
         chartPeso.legend.textSize = 14f
         chartGordura.legend.textSize = 14f
 
+        chartGordura.legend.textColor = Color.WHITE
+        chartPeso.legend.textColor = Color.WHITE
+
         chartPeso.legend.xEntrySpace = 50f
         chartGordura.legend.xEntrySpace = 50f
 
@@ -259,6 +266,9 @@ class Progresso : AppCompatActivity() {
 
         chartPeso.xAxis.textSize = 11f
         chartGordura.xAxis.textSize = 11f
+
+        chartGordura.xAxis.textColor = Color.WHITE
+        chartPeso.xAxis.textColor = Color.WHITE
 
         chartPeso.xAxis.axisLineWidth = 2f
         chartGordura.xAxis.axisLineWidth = 2f
@@ -269,14 +279,23 @@ class Progresso : AppCompatActivity() {
         chartPeso.axisLeft.textSize = 11f
         chartGordura.axisLeft.textSize = 11f
 
+        chartGordura.axisLeft.textColor = Color.WHITE
+        chartPeso.axisLeft.textColor = Color.WHITE
+
         chartPeso.axisLeft.axisLineWidth = 2f
         chartGordura.axisLeft.axisLineWidth = 2f
 
         chartPeso.axisRight.isEnabled = false
         chartGordura.axisRight.isEnabled = false
 
+        chartGordura.axisRight.textColor = Color.WHITE
+        chartPeso.axisRight.textColor = Color.WHITE
+
         chartPeso.description.text = "Peso/Meta de peso ao longo do tempo"
         chartGordura.description.text = "% de gordura/Meta de gordura ao longo do tempo"
+
+        chartPeso.description.textColor = Color.WHITE
+        chartGordura.description.textColor = Color.WHITE
 
         chartPeso.description.textSize = 14f
         chartGordura.description.textSize = 14f

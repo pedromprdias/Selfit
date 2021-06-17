@@ -44,19 +44,22 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="#FFFFFF">
+                android:background="#837B7B">
 
                 <EditText
                     android:id="@+id/listaAlimentosNomeSearch"
                     android:layout_width="280dp"
                     android:layout_height="38dp"
                     android:layout_marginStart="4dp"
-                    android:layout_marginLeft="4dp"
-                    android:background="#000000"
+                    android:background="#FFFFFF"
                     android:ems="10"
                     android:fontFamily="@font/mazzardsoftm_light"
+                    android:hint="Alimento..."
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
+                    android:paddingLeft="10dp"
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
                     android:textSize="22sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/listaAlimentosSearchBtn"
@@ -78,7 +81,8 @@
                     app:layout_constraintStart_toEndOf="@+id/listaAlimentosNomeSearch"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.525"
-                    app:srcCompat="@drawable/ic_baseline_search_24" />
+                    app:srcCompat="@drawable/ic_baseline_search_24"
+                    tools:ignore="VectorDrawableCompat" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -86,7 +90,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/alimentosListRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
+                android:layout_height="655dp"
                 android:background="#1E1E1E"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

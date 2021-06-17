@@ -24,16 +24,19 @@
                 android:id="@+id/toolbarReconhecimentoMaquina"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#0000FF"
-                app:subtitleTextColor="#0A0A0A"
-                app:titleTextColor="#111111">
+                android:background="#121212"
+                android:fontFamily="@font/mazzardsoftm_light"
+                app:subtitleTextColor="#FFFFFF"
+                app:titleTextAppearance="@style/tiago"
+                app:titleTextColor="#FFFFFF">
 
                 <TextView
                     android:id="@+id/toolbar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/mazzardsoftm_light"
                     android:text=""
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="20sp" />
             </androidx.appcompat.widget.Toolbar>
 

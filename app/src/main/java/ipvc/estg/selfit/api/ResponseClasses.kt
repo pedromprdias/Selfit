@@ -93,9 +93,7 @@ data class ExercicioInput(
 
 data class ValoresNutricionais(
         val calorias: Float,
-        val hidratosCarbono: Float,
-        val proteinas: Float,
-        val lipidos: Float
+        val peso: Float
 )
 
 data class Registo (
