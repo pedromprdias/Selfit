@@ -42,6 +42,8 @@ class ListaAlimentosFragment: DialogFragment() {
 
             val inflater = requireActivity().layoutInflater
 
+            listaAlimentos = listOf()
+
             dialogView = inflater.inflate(R.layout.fragment_lista_alimentos, null)
 
             var searchBtn: ImageButton = dialogView.findViewById(R.id.fragmentListaExerciciosSearchBtn)

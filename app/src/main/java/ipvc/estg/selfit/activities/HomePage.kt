@@ -778,29 +778,37 @@ class HomePage : AppCompatActivity(),
 
                     exerciciosTreinoDiario.clear()
 
-                    if(response.body()!!.registo!!.pequenoAlmoco.id != null){
+                    if(response.body()!!.registo!!.pequenoAlmoco.id != 0){
                         findViewById<TextView>(R.id.homePequenoAlmocoId).text = response.body()!!.registo!!.pequenoAlmoco.id.toString()
                     }
                     response.body()!!.registo!!.pequenoAlmoco.alimentos.forEach {
                         alimentosRefeicoes[0].add(it)
                     }
 
-                    findViewById<TextView>(R.id.homeAlmocoId).text = response.body()!!.registo!!.almoco.id.toString()
+                    if(response.body()!!.registo!!.almoco.id != 0){
+                        findViewById<TextView>(R.id.homeAlmocoId).text = response.body()!!.registo!!.almoco.id.toString()
+                    }
                     response.body()!!.registo!!.almoco.alimentos.forEach {
                         alimentosRefeicoes[1].add(it)
                     }
 
-                    findViewById<TextView>(R.id.homeLancheId).text = response.body()!!.registo!!.lanche.id.toString()
+                    if(response.body()!!.registo!!.lanche.id != 0){
+                        findViewById<TextView>(R.id.homeLancheId).text = response.body()!!.registo!!.lanche.id.toString()
+                    }
                     response.body()!!.registo!!.lanche.alimentos.forEach {
                         alimentosRefeicoes[2].add(it)
                     }
 
-                    findViewById<TextView>(R.id.homeJantarId).text = response.body()!!.registo!!.jantar.id.toString()
+                    if(response.body()!!.registo!!.jantar.id != 0){
+                        findViewById<TextView>(R.id.homeJantarId).text = response.body()!!.registo!!.jantar.id.toString()
+                    }
                     response.body()!!.registo!!.jantar.alimentos.forEach {
                         alimentosRefeicoes[3].add(it)
                     }
 
-                    findViewById<TextView>(R.id.homeTreinoId).text = response.body()!!.registo!!.treino.id.toString()
+                    if(response.body()!!.registo!!.treino.id != 0){
+                        findViewById<TextView>(R.id.homeTreinoId).text = response.body()!!.registo!!.treino.id.toString()
+                    }
                     response.body()!!.registo!!.treino.exercicios.forEach {
                         exerciciosTreinoDiario.add(it)
                     }

@@ -42,6 +42,8 @@ class ListaExerciciosFragment: DialogFragment() {
 
             val inflater = requireActivity().layoutInflater
 
+            listaExercicios = listOf()
+
             dialogView = inflater.inflate(R.layout.fragment_lista_exercicios, null)
 
             builder.setView(dialogView)
