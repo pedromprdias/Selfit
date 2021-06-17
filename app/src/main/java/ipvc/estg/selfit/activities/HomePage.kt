@@ -347,7 +347,6 @@ class HomePage : AppCompatActivity(),
             findViewById<Button>(R.id.homePequenoAlmocoGuardarBtn) -> {
                 tipo = "Pequeno Almoço"
                 idHolder = findViewById(R.id.homePequenoAlmocoId)
-                Log.i("a", idHolder.text.toString())
                 id = idHolder.text.toString().toInt()
                 alimentosRefeicoes[0].forEach {
                     alimentos.add(AlimentoInput(id = it.id, quantidade = it.quantidade!!))

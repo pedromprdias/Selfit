@@ -15,16 +15,21 @@ import java.util.*
 class AlarmReceiver : BroadcastReceiver(){
 
     override fun onReceive(context: Context?, intent: Intent?) {
-
+        Log.i("mongo", Calendar.getInstance().timeInMillis.toString())
         var tipoLembrete: String = intent!!.getStringExtra("tipoLembrete").toString()
 
         val intent = Intent(context, MainActivity::class.java)
         val pendingIntent: PendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
 
+        var lembrete: String
+
+        if(tipoLembrete == "Registos") lembrete = "Lembrete: Não efetuou nenhum registo hoje."
+        else lembrete = "Lembrete: Não efetuou registo relativo a " + tipoLembrete + " hoje."
+
         val builder = NotificationCompat.Builder(context!!, "8")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Lembrete Selfit")
-                .setContentText(tipoLembrete)
+                .setContentText(lembrete)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true)

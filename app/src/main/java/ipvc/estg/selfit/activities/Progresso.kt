@@ -199,14 +199,14 @@ class Progresso : AppCompatActivity() {
         }
 
         val lineDataSetPeso = LineDataSet(listaPesoChart, "Peso (kg)")
-        lineDataSetPeso.color = Color.YELLOW
+        lineDataSetPeso.color = Color.rgb(15, 15, 255)
         lineDataSetPeso.lineWidth = 3f
         lineDataSetPeso.valueTextSize = 12f
         lineDataSetPeso.circleRadius = 8f
         lineDataSetPeso.valueTextColor = Color.WHITE
         lineDataSetPeso.circleHoleRadius = 4f
         val lineDataSetPesoMeta = LineDataSet(listaPesoMetaChart, "Meta de Peso (kg)")
-        lineDataSetPesoMeta.color = Color.GREEN
+        lineDataSetPesoMeta.color = Color.rgb(255, 164, 1)
         lineDataSetPesoMeta.lineWidth = 3f
         lineDataSetPesoMeta.valueTextSize = 12f
         lineDataSetPesoMeta.valueTextSize = 12f
@@ -214,7 +214,7 @@ class Progresso : AppCompatActivity() {
         lineDataSetPesoMeta.valueTextColor = Color.WHITE
         lineDataSetPesoMeta.circleHoleRadius = 4f
         val lineDataSetGordura = LineDataSet(listaGorduraChart, "Gordura Corporal (%)")
-        lineDataSetGordura.color = Color.YELLOW
+        lineDataSetGordura.color = Color.rgb(8, 8, 255)
         lineDataSetGordura.lineWidth = 3f
         lineDataSetGordura.valueTextSize = 12f
         lineDataSetGordura.valueTextSize = 12f
@@ -222,7 +222,7 @@ class Progresso : AppCompatActivity() {
         lineDataSetGordura.valueTextColor = Color.WHITE
         lineDataSetGordura.circleHoleRadius = 4f
         val lineDataSetGorduraMeta = LineDataSet(listaGorduraMetaChart, "Meta de Gordura (%)")
-        lineDataSetGorduraMeta.color = Color.GREEN
+        lineDataSetGorduraMeta.color = Color.rgb(255, 164, 1)
         lineDataSetGorduraMeta.lineWidth = 3f
         lineDataSetGorduraMeta.valueTextSize = 12f
         lineDataSetGorduraMeta.valueTextSize = 12f
