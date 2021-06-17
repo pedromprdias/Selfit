@@ -103,7 +103,6 @@ class ReconhecimentoMaquina : AppCompatActivity() {
             intent.type = "image/*"
 
             startActivityForResult(intent, 100)
-
         })
     }
 
@@ -127,6 +126,7 @@ class ReconhecimentoMaquina : AppCompatActivity() {
         val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.UINT8)
 
         var tbuffer = TensorImage.fromBitmap(resized)
+
         var byteBuffer = tbuffer.buffer
 
         inputFeature0.loadBuffer(byteBuffer)
@@ -135,15 +135,16 @@ class ReconhecimentoMaquina : AppCompatActivity() {
         val outputs = model.process(inputFeature0)
         val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-
         var max = getMax(outputFeature0.floatArray)
-
         // Releases model resources if no longer used.
         model.close()
 
+        var id: String = resultado[max].split(" ")[1].trim()
+
         val intent = Intent(this, DetalhesMaquina::class.java).apply {
-            putExtra("ID", resultado[max].split(" ")[1].toInt())
+            putExtra("ID", id.toInt())
         }
+
         startActivity(intent)
         finish()
     }

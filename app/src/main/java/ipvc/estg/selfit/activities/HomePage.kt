@@ -183,7 +183,7 @@ class HomePage : AppCompatActivity(),
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onStop() {
-    Log.i("hahaxd", "1")
+
         var horas: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH")).toInt() + 1
         var minutos: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("mm")).toInt()
         var segundos: Int = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ss")).toInt()
@@ -192,7 +192,7 @@ class HomePage : AppCompatActivity(),
 
         var pendingIntents: MutableMap<String, PendingIntent> = mutableMapOf()
         var eventos: MutableList<String> = mutableListOf("Pequeno Almoço", "Almoço", "Lanche", "Jantar", "Treino Diário", "Registos")
-        Log.i("hahaxd", "2")
+
         for(i in 1..6) {
 
             var intent: Intent = Intent(this, AlarmReceiver::class.java).apply {
@@ -204,7 +204,6 @@ class HomePage : AppCompatActivity(),
         when {
             horas < 12 -> {
                 eventos.forEach {
-                    Log.i("sus", notifValues[it].toString())
                     if(!notifValues[it]!!) alarmManager.set(AlarmManager.RTC_WAKEUP, getMillisToEvent(it, horas, minutos, segundos), pendingIntents.getValue(it))
                 }
             }

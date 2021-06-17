@@ -71,8 +71,11 @@
                     android:background="#FFFFFF"
                     android:ems="10"
                     android:fontFamily="@font/mazzardsoftm_light"
+                    android:hint="Exercício..."
                     android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
+                    android:paddingLeft="10dp"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
                     app:layout_constraintBottom_toTopOf="@+id/listaExerciciosMusculosSearch"
                     app:layout_constraintStart_toStartOf="parent" />
 

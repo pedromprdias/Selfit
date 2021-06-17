@@ -33,7 +33,7 @@
             android:background="#FFFFFF"
             android:ems="10"
             android:fontFamily="@font/mazzardsoftm_light"
-            android:hint="Nome da Máquina..."
+            android:hint="Exercício..."
             android:inputType="textPersonName"
             android:paddingLeft="10dp"
             android:textColor="#000000"

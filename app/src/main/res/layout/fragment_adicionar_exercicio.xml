@@ -158,10 +158,12 @@
 
     <Button
         android:id="@+id/fragmentAdicionarExercicioEditBtn"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/alterar"
         android:visibility="invisible"
+        app:backgroundTint="#000000"
         app:layout_constraintEnd_toStartOf="@+id/fragmentAdicionarExercicioRmBtn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -169,10 +171,12 @@
 
     <Button
         android:id="@+id/fragmentAdicionarExercicioRmBtn"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/mazzardsoftm_light"
         android:text="@string/remover"
         android:visibility="invisible"
+        app:backgroundTint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fragmentAdicionarExercicioEditBtn"
